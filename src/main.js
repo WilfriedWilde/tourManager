@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-import MaplibreTransition from "maplibre-transition"
+import MaplibreTransition from "maplibre-transition";
+import { getCountries } from "/src/fetch.js"
 
 const map = new maplibregl.Map({
 	container: 'map',
@@ -37,8 +38,10 @@ const map = new maplibregl.Map({
 	projection: 'mercator'
 })
 
-let selectedCountries = [];
+let selectedCountries = await getCountries();
+selectedCountries = selectedCountries.map(c => c.charAt(0).toUpperCase() + c.slice(1))
 
+console.log(selectedCountries)
 function filterCountries() {
 	if (selectedCountries.length === 0) {
 		map.setFilter('countries-fill', [

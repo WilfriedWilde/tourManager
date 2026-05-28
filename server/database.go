@@ -8,13 +8,14 @@ import (
 	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-var DB *pgxpool.Pool
+var db *pgxpool.Pool
 
-func InitDB() {
+func Initdb() {
 	dbURL := os.Getenv("DATABASE_URL")
 
 	var err error
-	DB, err = pgxpool.New(context.Background(), dbURL)
+	
+	db, err = pgxpool.New(context.Background(), dbURL)
 	if err != nil {
 		panic(fmt.Errorf("Error connecting to database: %w", err))
 	}

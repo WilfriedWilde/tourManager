@@ -13,11 +13,15 @@ func main() {
 		fmt.Println("No .env file found (that's fine)")
 	}
 
-	InitDB()
-	defer DB.Close()
+	Initdb()
+	defer db.Close()
 
 	http.HandleFunc("/api/countries", HandleCountries)
 	http.HandleFunc("/api/coordinates", HandleCoordinates)
 
-	http.ListenAndServe(":8080", nil)
+	err = http.ListenAndServe(":8080", nil)
+	if err != nil {
+		fmt.Println("Error serving:", err)
+		return
+	}
 }
