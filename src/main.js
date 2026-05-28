@@ -1,14 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import MaplibreTransition from "maplibre-transition"
 
-const supabase = createClient('https://qqhoykbyektztzwfhxjt.supabase.co', 'sb_publishable_R8xRbhnBAJhxtBHYg79kVA_kO4W0E5Y')
-
-const { data, error } = await supabase
-	.from('venues')
-	.select('*')
-
-console.log("data", data, "error", error)
-
 const map = new maplibregl.Map({
 	container: 'map',
 	style: {
@@ -45,12 +37,22 @@ const map = new maplibregl.Map({
 	projection: 'mercator'
 })
 
-let selectedCountries = ['France', 'Finland', 'Spain', 'Germany', 'Italy', 'United States of America'];
+let selectedCountries = [];
 
-function updateFilter() {
+function filterCountries() {
 	if (selectedCountries.length === 0) {
-		map.setFilter('countries-fill', ['==', ['get', 'ADMIN', '__none__']]);
-		map.setFilter('countries-outline', ['==', ['get', 'ADMIN', '__none__']]);
+		map.setFilter('countries-fill', [
+			'==',
+			['get', 'ADMIN'],
+			'__none__'
+		]);
+
+		map.setFilter('countries-outline', [
+			'==',
+			['get', 'ADMIN'],
+			'__none__'
+		]);
+
 		return;
 	}
 
@@ -68,7 +70,7 @@ function updateFilter() {
 }
 
 map.on('load', () => {
-	updateFilter()
+	filterCountries()
 })
 
 /*
