@@ -2,16 +2,20 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 )
+
+type Coord struct {
+	Lat float64 `json:"lat"`
+	Lon float64 `json:"lon"`
+}
 
 func HandleCountries(w http.ResponseWriter, r *http.Request) {
 	ctx := r.Context()
 
 	rows, err := db.Query(ctx, "SELECT DISTINCT country FROM venues")
 	if err != nil {
-		fmt.Printf("Error querying countries", err)
+		http.Error(w, err.Error(), 500)
 		return
 	}
 	defer rows.Close()
@@ -35,9 +39,27 @@ func HandleCountries(w http.ResponseWriter, r *http.Request) {
 }
 
 func HandleCoordinates(w http.ResponseWriter, r *http.Request) {
-//	ctx := r.Context()
+	ctx := r.Context()
 
+	rows, err := db.Query(ctx, "SELECT DISTINCT latitude, longitude FROM venues")
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		return
+	}
+	defer rows.Close()
 
-	
-	w.Write([]byte("connected!"))
+	var coords []Coord
+	for rows.Next() {
+		var c Coord
+		if err := rows.Scan(&c.Lat, &c.Lon); err != nil {
+			http.Error(w, err.Error(), 500)
+			return
+		}
+
+		coords = append(coords, c)
+	}
+
+	if err = json.NewEncoder(w).Encode(coords); err != nil {
+		http. Error(w, err.Error(), 500)
+	}
 }

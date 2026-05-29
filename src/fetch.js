@@ -5,3 +5,11 @@ export async function getCountries() {
 
     return countries
 }
+
+export async function getCoordinates() {
+	const url = '/api/coordinates';
+	const response = await fetch(url);
+	const coords = await response.json();
+
+	return coords
+}

@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import MaplibreTransition from "maplibre-transition";
-import { getCountries } from "/src/fetch.js"
+import { getCountries, getCoordinates } from "/src/fetch.js"
 
 const map = new maplibregl.Map({
 	container: 'map',
@@ -17,17 +17,12 @@ const map = new maplibregl.Map({
 				'id': 'countries-fill',
 				'source': 'countries',
 				'type': 'fill',
-				'paint': {
-					'fill-color': '#cccccc',
-					'fill-opacity': 0.4
-				}
 			},
 			{
 				'id': 'countries-outline',
 				'source': 'countries',
 				'type': 'line',
 				'paint': {
-					'line-color': '#111',
 					'line-width': 0.5
 				}
 			}
@@ -41,39 +36,33 @@ const map = new maplibregl.Map({
 let selectedCountries = await getCountries();
 selectedCountries = selectedCountries.map(c => c.charAt(0).toUpperCase() + c.slice(1))
 
-console.log(selectedCountries)
-function filterCountries() {
-	if (selectedCountries.length === 0) {
-		map.setFilter('countries-fill', [
-			'==',
-			['get', 'ADMIN'],
-			'__none__'
-		]);
+let coords = await getCoordinates();
+console.log(coords)
+function updateCountries() {
+	map.setPaintProperty('countries-fill', 'fill-color', [
+		'case',
+		['in', ['get', 'ADMIN'], ['literal', selectedCountries]],
+		'#00ff00',
+		'#bbbbbb',
+	])
 
-		map.setFilter('countries-outline', [
-			'==',
-			['get', 'ADMIN'],
-			'__none__'
-		]);
+	map.setPaintProperty('countries-fill', 'fill-opacity', [
+		'case',
+		['in', ['get', 'ADMIN'], ['literal', selectedCountries]],
+		0.7,
+		0.3
+	])
 
-		return;
-	}
-
-	map.setFilter('countries-fill', [
-		'in',
-		['get', 'ADMIN'],
-		['literal', selectedCountries]
-	]);
-
-	map.setFilter('countries-outline', [
-		'in',
-		['get', 'ADMIN'],
-		['literal', selectedCountries]
-	]);
+	map.setPaintProperty('countries-outline', 'line-color', [
+		'case',
+		['in', ['get', 'ADMIN'], ['literal', selectedCountries]],
+		'#222222',
+		'#777777'
+	])
 }
 
 map.on('load', () => {
-	filterCountries()
+	updateCountries()
 })
 
 /*
