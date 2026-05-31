@@ -1,6 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
 import MaplibreTransition from "maplibre-transition";
+import { Protocol } from "pmtiles";
 import { getCountries, getCoordinates } from "/src/fetch.js"
+
+const protocol = new Protocol();
+maplibregl.addProtocol("pmtiles", protocol.tile);
 
 const map = new maplibregl.Map({
 	container: 'map',
@@ -8,19 +12,21 @@ const map = new maplibregl.Map({
 		version: 8,
 		sources: { 
 			'countries': {
-				type: 'geojson',
-				data: '/countries.geojson'
+				type: 'vector',
+				url: 'pmtiles://countries.pmtiles'
 			}
 		},
 		layers: [
 			{
 				'id': 'countries-fill',
 				'source': 'countries',
+				'source-layer': 'countries',
 				'type': 'fill',
 			},
 			{
 				'id': 'countries-outline',
 				'source': 'countries',
+				'source-layer': 'countries',
 				'type': 'line',
 				'paint': {
 					'line-width': 0.5
@@ -28,9 +34,8 @@ const map = new maplibregl.Map({
 			}
 		],
 	},
-	center: [0, 0],
-	zoom: 2,
-	projection: 'mercator'
+	center: [0, 20],
+	zoom: 1,
 })
 
 let selectedCountries = await getCountries();
@@ -62,6 +67,7 @@ function updateCountries() {
 }
 
 map.on('load', () => {
+	map.setProjection({ type : 'globe' });
 	updateCountries()
 })
 
