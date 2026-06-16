@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/jackc/pgx/v5/pgxpool"
@@ -17,7 +18,7 @@ func Initdb() {
 	
 	db, err = pgxpool.New(context.Background(), dbURL)
 	if err != nil {
-		panic(fmt.Errorf("Error connecting to database: %w", err))
+		log.Fatal(fmt.Errorf("Error connecting to database: %w", err))
 	}
 
 	fmt.Println("Connected to database")

@@ -1,5 +1,3 @@
-import { createClient } from "@supabase/supabase-js";
-import MaplibreTransition from "maplibre-transition";
 import { Protocol } from "pmtiles";
 import { getCountries, getCoordinates } from "/src/fetch.js"
 
@@ -43,6 +41,7 @@ selectedCountries = selectedCountries.map(c => c.charAt(0).toUpperCase() + c.sli
 
 let coords = await getCoordinates();
 console.log(coords)
+
 function updateCountries() {
 	map.setPaintProperty('countries-fill', 'fill-color', [
 		'case',
