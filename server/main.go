@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/joho/godotenv"
@@ -16,12 +17,15 @@ func main() {
 	Initdb()
 	defer db.Close()
 
-	http.HandleFunc("/api/countries", HandleCountries)
-	http.HandleFunc("/api/coordinates", HandleCoordinates)
+	server := http.NewServeMux()
+	server.HandleFunc("/api/countries", HandleCountries)
+	server.HandleFunc("/api/coordinates", HandleCoordinates)
 
-	err = http.ListenAndServe(":8080", nil)
+	fmt.Println("Server running on http://localhost:8080")
+
+	err = http.ListenAndServe(":8080", server)
 	if err != nil {
-		fmt.Println("Error serving:", err)
+		log.Fatal("Error serving:", err)
 		return
 	}
 }
