@@ -1,7 +1,13 @@
 export async function getOrganizers() {
-    const url = 'api/organizers';
-    const response = await fetch(url);
-    const organizers = await response.json();
+    const url = 'http://localhost:8080/organizers';
 
-    return organizers
+    try {
+        const response = await fetch(url);
+        const organizers = await response.json();
+
+        return organizers
+    } catch(err) {
+        console.log('error fetching organizers:', err)
+        return []
+    }
 }
