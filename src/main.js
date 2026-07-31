@@ -43,6 +43,8 @@ const countries = organizers.map(o => {
 	return country.charAt(0).toUpperCase() + country.slice(1)
 })
 
+console.log(countries)
+
 function updateCountries() {
 	map.setPaintProperty('countries-fill', 'fill-color', [
 		'case',
