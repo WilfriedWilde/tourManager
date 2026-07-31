@@ -1,5 +1,5 @@
 import { Protocol } from "pmtiles";
-import { getCountries, getCoordinates } from "/src/fetch.js"
+import { getOrganizers } from "./fetch";
 
 const protocol = new Protocol();
 maplibregl.addProtocol("pmtiles", protocol.tile);
@@ -36,30 +36,31 @@ const map = new maplibregl.Map({
 	zoom: 1,
 })
 
-let selectedCountries = await getCountries();
-selectedCountries = selectedCountries.map(c => c.charAt(0).toUpperCase() + c.slice(1))
+const organizers = await getOrganizers();
+const countries = organizers.map(o => {
+	const country = o.country;
 
-let coords = await getCoordinates();
-console.log(coords)
+	return country.charAt(0).toUpperCase() + country.slice(1)
+})
 
 function updateCountries() {
 	map.setPaintProperty('countries-fill', 'fill-color', [
 		'case',
-		['in', ['get', 'ADMIN'], ['literal', selectedCountries]],
+		['in', ['get', 'ADMIN'], ['literal', countries]],
 		'#00ff00',
 		'#bbbbbb',
 	])
 
 	map.setPaintProperty('countries-fill', 'fill-opacity', [
 		'case',
-		['in', ['get', 'ADMIN'], ['literal', selectedCountries]],
+		['in', ['get', 'ADMIN'], ['literal', countries]],
 		0.7,
 		0.3
 	])
 
 	map.setPaintProperty('countries-outline', 'line-color', [
 		'case',
-		['in', ['get', 'ADMIN'], ['literal', selectedCountries]],
+		['in', ['get', 'ADMIN'], ['literal', countries]],
 		'#222222',
 		'#777777'
 	])
