@@ -1,4 +1,5 @@
-import maplibregl, { Popup } from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import { Protocol } from "pmtiles";
 import { getOrganizers } from "./fetch";
 
@@ -106,16 +107,17 @@ function addMarkers() {
     organizerPopup.classList.add("organizer-popup");
 
     const popupContent = `
+      <p class="organizer-popup-field">Name: ${o.name}</p>
       <p class="organizer-popup-field">Type: ${o.type}</p>
-      <p class="organizer-popup-field">Type: ${o.name}</p>
-      <p class="organizer-popup-field">Type: ${o.country}</p>
-      <p class="organizer-popup-field">Type: ${o.city}</p>
-      <p class="organizer-popup-field">Type: ${o.address}</p>
-      <p class="organizer-popup-field">Type: ${o.websites}</p>
-      <p class="organizer-popup-field">Type: ${o.phone_numbers}</p>
-      <p class="organizer-popup-field">Type: ${o.contact_persons}</p>
-      <p class="organizer-popup-field">Type: ${o.schedule}</p>
-      <p class="organizer-popup-field">Type: ${o.notes}</p>
+      <p class="organizer-popup-field">Country: ${o.country}</p>
+      <p class="organizer-popup-field">City: ${o.city}</p>
+      <p class="organizer-popup-field">Address: ${o.address}</p>
+      <p>Websites: ${o.websites}</p>
+      <p>Emails: ${o.emails}</p>
+      <p class="organizer-popup-field">Phone Numbers: ${o.phone_numbers}</p>
+      <p class="organizer-popup-field">Contact Persons: ${o.contact_persons}</p>
+      <p class="organizer-popup-field">Schedule: ${o.schedule}</p>
+      <p class="organizer-popup-field">Notes: ${o.notes}</p>
     `;
     
     organizerPopup.innerHTML = popupContent;
@@ -125,7 +127,7 @@ function addMarkers() {
         o.type === "venue" ? colors.markers.venue : colors.markers.festival,
     })
       .setLngLat([o.longitude, o.latitude])
-      .setPopup(new Popup().setDOMContent(organizerPopup))
+      .setPopup(new maplibregl.Popup().setDOMContent(organizerPopup))
       .addTo(map);
   });
 }
