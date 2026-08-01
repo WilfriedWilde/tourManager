@@ -1,3 +1,4 @@
+import maplibregl, { Popup } from 'maplibre-gl';
 import { Protocol } from "pmtiles";
 import { getOrganizers } from "./fetch";
 
@@ -73,7 +74,7 @@ function getCountries() {
 map.on("load", () => {
   map.setProjection({ type: "globe" });
   updateCountries();
-  showMarkers();
+  addMarkers();
 });
 
 function updateCountries() {
@@ -99,14 +100,32 @@ function updateCountries() {
   ]);
 }
 
-function showMarkers() {
+function addMarkers() {
   organizers.forEach((o) => {
-    console.log(o.latitude);
-    let marker = new maplibregl.Marker({
+    let organizerPopup = document.createElement("div");
+    organizerPopup.classList.add("organizer-popup");
+
+    const popupContent = `
+      <p class="organizer-popup-field">Type: ${o.type}</p>
+      <p class="organizer-popup-field">Type: ${o.name}</p>
+      <p class="organizer-popup-field">Type: ${o.country}</p>
+      <p class="organizer-popup-field">Type: ${o.city}</p>
+      <p class="organizer-popup-field">Type: ${o.address}</p>
+      <p class="organizer-popup-field">Type: ${o.websites}</p>
+      <p class="organizer-popup-field">Type: ${o.phone_numbers}</p>
+      <p class="organizer-popup-field">Type: ${o.contact_persons}</p>
+      <p class="organizer-popup-field">Type: ${o.schedule}</p>
+      <p class="organizer-popup-field">Type: ${o.notes}</p>
+    `;
+    
+    organizerPopup.innerHTML = popupContent;
+
+    new maplibregl.Marker({
       color:
         o.type === "venue" ? colors.markers.venue : colors.markers.festival,
     })
       .setLngLat([o.longitude, o.latitude])
+      .setPopup(new Popup().setDOMContent(organizerPopup))
       .addTo(map);
   });
 }
