@@ -5,5 +5,12 @@
 }
 
 :root {
-	--color-text: white;
+	--country-fill-inactive: "#000000";
+	--country-fill-active: "#c9c9c9";
+	--country-fill-selected: "#00ff00";
+	--country-outline-inactive: "#000000";
+	--country-outline-active: "#000000";
+	--country-outline-selected: "#000000";
+	--markers-venue: "#006eff",
+	--markers-festival: "#fff200",
 }
