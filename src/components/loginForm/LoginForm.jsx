@@ -1,23 +1,20 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import "./login.css"
-import { METHODS } from "http";
-import { json } from "node:stream/consumers";
+import { login } from "../../api/users";
 
-export default function Login() {
+export default function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
 
-        fetch("/api/login", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                email: email,
-                password: password
-            })
-        })
+        try {
+            const user = await login(email, password);
+            setUser(user);
+        } catch (err) {
+            setError(err.message);
+        }
     }
 
     return (
