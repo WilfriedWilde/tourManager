@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { createPortal } from "react-dom";
-import maplibregl from "maplibre-gl";
-import OrganizerPopup from "./OrganizerPopup";
+import * as maplibregl from "maplibre-gl";
+import OrganizerPopup from "./organizerPopup/OrganizerPopup";
 import { colors } from "../constants";
 
 export default function OrganizerMarkup({ map, organizer: o }) {

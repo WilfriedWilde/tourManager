@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { Protocol } from "pmtiles";
-import { getOrganizers } from "../../hooks/fetch/fetch";
+import { getOrganizers } from '../../api/organizers';
 import { colors } from '../../constants';
 import OrganizerPopup from '../organizerPopup/OrganizerPopup';
 import OrganizerMarkup from '../OrganizerMarkup';
@@ -16,7 +16,7 @@ export default function Map({ organizers }) {
   
   useEffect(() => {
     const map = new maplibregl.Map({
-      container: "map",
+      container: container.current,
       style: {
         version: 8,
         sources: {
@@ -47,25 +47,18 @@ export default function Map({ organizers }) {
       zoom: 1,
     });
 
-    map.on("load", () => {
-      map.setProjection({ type: "globe" });
-      updateCountries();
-      addMarkers();
-    });
-    
     const countries = getCountries(organizers);
     console.log(countries);
+
+    map.on("load", () => {
+      map.setProjection({ type: "globe" });
+      updateCountries(map, countries);
+    });
     
     useEffect(() => {
       if (!map) return
       updateCountries()
     }, [map, organizers])
-    
-    function addMarkers() {
-      organizers.forEach((o) => {
-
-      });
-    }
 
     return () => map.current.remove()
   }, [])
@@ -91,7 +84,7 @@ function getCountries(organizers) {
   return [...countries];
 }
 
-function updateCountries(countries) {
+function updateCountries(map, countries) {
   map.setPaintProperty("countries-fill", "fill-color", [
     "case",
     ["in", ["get", "ADMIN"], ["literal", countries]],
