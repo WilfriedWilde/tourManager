@@ -9,11 +9,15 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
     "vite": "^8.0.12"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",
+    "maplibre-gl": "^6.1.0",
     "maplibre-transition": "^1.0.2",
-    "pmtiles": "^4.4.1"
+    "pmtiles": "^4.4.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   }
 }

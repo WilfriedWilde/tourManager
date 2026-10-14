@@ -1,0 +1,9 @@
+.map {
+    width: 100%;
+    height: 100vh;
+}
+
+.maplibregl-marker-covered {
+    pointer-events: none;
+    cursor: default;
+}
