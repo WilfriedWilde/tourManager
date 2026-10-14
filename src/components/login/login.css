@@ -1,0 +1,41 @@
+#login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-header {
+    text-transform: uppercase;
+}
+
+.form-inputs-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.form-section label {
+    text-transform: capitalize;
+    font-weight: 500;
+}
+
+.form-section input {
+    padding: var(--space-1);
+}
+
+.submit-btn {
+    text-transform: uppercase;
+}
+
+.submit-btn:hover {
+    cursor: pointer;
+}
+
+
+
