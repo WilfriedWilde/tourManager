@@ -1,10 +1,13 @@
 import { useState } from "react"
-import "./loginform.css"
 import { login } from "../../api/users";
+import { useAuth } from "../AuthContext";
+import "./loginform.css"
 
 export default function LoginForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const { setUser } = useAuth();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -24,13 +27,14 @@ export default function LoginForm() {
             <div className="form-inputs-container">
                 <div className="form-section">
                     <label htmlFor="email">email</label>
-                    <input value={email} id="email" type="email" placeholder="enter email here..." onChange={(e) => setEmail(e.target.value)} required/>
+                    <input value={email} id="email" type="email" autoComplete="email" placeholder="enter email here..." onChange={(e) => setEmail(e.target.value)} required/>
                 </div>
                 <div className="form-section">
-                    <label htmlFor="password">email</label>
-                    <input value={password} id="password" type="password" placeholder="enter password here..." onChange={(e) => setPassword(e.target.value)} required/>
+                    <label htmlFor="password">password</label>
+                    <input value={password} id="password" type="password" autoComplete="password" placeholder="enter password here..." onChange={(e) => setPassword(e.target.value)} required/>
                 </div>
             </div>
+            {error && <p className="form-error">{error}</p>}
             <button type="submit" className="submit-btn" id="login-form-btn">login</button>
         </form>
     )

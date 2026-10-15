@@ -1,5 +1,5 @@
-import { getDefaultResultOrder } from "dns";
 import { createContext, useContext, useEffect, useState } from "react";
+import { getCurrentUser } from "../api/users";
 
 const AuthContext = createContext(null);
 
@@ -10,7 +10,7 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         getCurrentUser()
             .then(setUser)
-            .catch(setUser(null))
+            .catch(() => setUser(null))
             .finally(() => setLoading(false))
     }, [])
 
