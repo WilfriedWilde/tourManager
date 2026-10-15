@@ -1,5 +1,5 @@
 import { useState } from "react"
-import "./login.css"
+import "./loginform.css"
 import { login } from "../../api/users";
 
 export default function LoginForm() {
@@ -12,6 +12,7 @@ export default function LoginForm() {
         try {
             const user = await login(email, password);
             setUser(user);
+            console.log(user)
         } catch (err) {
             setError(err.message);
         }

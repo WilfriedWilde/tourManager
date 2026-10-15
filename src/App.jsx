@@ -1,9 +1,7 @@
 import useOrganizers from "./hooks/useOrganizers";
 import Map from "./components/map/Map";
-import Login from "./components/login/Login";
 import "./index.css"
 import LoginForm from "./components/loginForm/LoginForm";
-import { AuthProvider } from "./components/AuthContext";
 
 function App() {
     // TODO: implement login first
