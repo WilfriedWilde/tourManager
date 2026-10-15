@@ -1,20 +1,16 @@
-import useOrganizers from "./hooks/useOrganizers";
-import Map from "./components/map/Map";
+import { Routes, Route } from "react-router";
+import Home from "./pages/Home";
 import "./index.css"
-import LoginForm from "./components/loginForm/LoginForm";
+import Login from "./pages/Login";
 
 function App() {
-    // TODO: implement login first
-    
-/*
-    const {organizers, loadingOrganizers, errorOrganizers} = useOrganizers();
-
-    if (loadingOrganizers) return <p>Loading organizers...</p>;
-    if (errorOrganizers) return <p>Something went wrong while loading organizers :(</p>;
-*/
     return (
-        <LoginForm />
-     //   <Map organizers={organizers} />
+        <>
+            <Routes>
+                <Route path="/" element={<Home />}/>
+                <Route path="/login" element={<Login />}/>
+            </Routes>
+        </>
     );
 }
 
