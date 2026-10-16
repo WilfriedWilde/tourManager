@@ -1,0 +1,11 @@
+#navbar {
+    display: flex;
+    justify-content: space-evenly;
+    color: var(--text);
+    background-color: var(--bg);
+}
+
+.navbar-section {
+    display: flex;
+    gap: var(--space-3);
+}

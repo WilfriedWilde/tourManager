@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { login } from "../../api/users";
 import { useAuth } from "../AuthContext";
+import { useNavigate } from "react-router";
 import "./loginform.css"
 
 export default function LoginForm() {
@@ -8,6 +9,7 @@ export default function LoginForm() {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const { setUser } = useAuth();
+    const navigate = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -15,7 +17,7 @@ export default function LoginForm() {
         try {
             const user = await login(email, password);
             setUser(user);
-            console.log(user)
+            navigate("/");
         } catch (err) {
             setError(err.message);
         }
@@ -31,7 +33,7 @@ export default function LoginForm() {
                 </div>
                 <div className="form-section">
                     <label htmlFor="password">password</label>
-                    <input value={password} id="password" type="password" autoComplete="password" placeholder="enter password here..." onChange={(e) => setPassword(e.target.value)} required/>
+                    <input value={password} id="password" type="password" autoComplete="current-password" placeholder="enter password here..." onChange={(e) => setPassword(e.target.value)} required/>
                 </div>
             </div>
             {error && <p className="form-error">{error}</p>}
