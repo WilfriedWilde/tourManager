@@ -4,12 +4,10 @@ import { logout } from "../../api/users";
 import "./navbar.css"
 
 export default function Navbar() {
-    const { setUser } = useAuth()
+    const { user, setUser } = useAuth()
     const navigate = useNavigate();
 
-    async function handleLogout(e) {
-        e.preventDefault();
-
+    async function handleLogout() {
         try {
             await logout();
             setUser(null);
@@ -21,12 +19,19 @@ export default function Navbar() {
 
     return (
         <nav id="navbar">
+            <h1>Tourwise</h1>
             <div className="navbar-section">
-                <Link to="/signup" className="log-btn">signup</Link>
-                <Link to="/login" className="log-btn">login</Link>
-                <form onClick={handleLogout}>
-                    <button type="submit">logout</button>
-                </form>
+                {user ?(
+                    <>
+                        <p className="user-name">{user.username}</p>
+                        <button className="btn-logout" onClick={handleLogout}>logout</button>
+                    </>
+                ) : (
+                    <>
+                        <Link to="/signup" className="log-btn">signup</Link>
+                        <Link to="/login" className="log-btn">login</Link>
+                    </>
+                )}
             </div>
         </nav>
     )

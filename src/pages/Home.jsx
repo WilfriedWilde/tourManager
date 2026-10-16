@@ -12,8 +12,6 @@ export default function Home() {
     return (
         <>
             <Navbar />
-            <h1>Tour wise</h1>
-            {user && <p>Welcome {user.username}</p>}
             <Map organizers={organizers}/>
         </>
     )
