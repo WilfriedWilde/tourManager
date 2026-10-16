@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router";
 import Home from "./pages/Home";
-import "./index.css"
 import Login from "./pages/Login";
 
 function App() {
