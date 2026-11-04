@@ -6,6 +6,21 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "Village";
+  src: url("./assets/fonts/village.ttf");
+}
+
+@font-face {
+  font-family: "Averia";
+  src: url("./assets/fonts/averia.ttf");
+}
+
+@font-face {
+  font-family: "Karma";
+  src: url("./assets/fonts/karma.ttf");
+}
+
 :root {
   color-scheme: light;
 
@@ -44,6 +59,10 @@
   --space-12: 3rem; /* 48px */
   --space-16: 4rem; /* 64px */
   --space-24: 6rem; /* 96px */
+
+  --font-title: "Village", sans-serif;
+  --font-subtitle: "Averia", sans-serif;
+  --font-main: "Karma", sans-serif;
 }
 
 .link {
