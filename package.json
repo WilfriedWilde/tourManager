@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.1.2",
-    "vite": "^8.0.12"
+    "vite": "^8.0.12",
+    "vite-plugin-svgr": "^5.2.0"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.106.2",
@@ -19,7 +20,6 @@
     "pmtiles": "^4.4.1",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "react-router": "^8.4.0",
-    "vite-plugin-svgr": "^5.2.0"
+    "react-router": "^8.4.0"
   }
 }

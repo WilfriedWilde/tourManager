@@ -1,45 +1,51 @@
-*, *::before, *::after {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-	color-scheme: light dark;
-	  
-	--bg:            light-dark(#F4F8F7, #1C2A2E);
-	--surface:       light-dark(#FFFFFF, #243639);
-	--border:        light-dark(#D5E0DE, #33484D);
-	--text:          light-dark(#1C2A2E, #FFFFFF);
-	--text-muted:    light-dark(#5B6E72, #A9B8BB);
-	--primary:       light-dark(#2F7A68, #5FA895);
-	--primary-hover: light-dark(#256553, #8CC4B4);
-	--primary-press: light-dark(#1D5445, #3F8573);
-	--tint:          light-dark(#DCEEE8, #2A4A45);
-	--error:         light-dark(#B8493F, #D4756B);
-  
-	--stop-gig:       light-dark(#2F7A68, #5FA895);
-	--stop-travel:    light-dark(#3F78A8, #6C9BC4);
-	--stop-free:      light-dark(#A97C1E, #D9B26A);
-	--stop-unplanned: light-dark(#6B7B7F, #8A9A9E);
+  color-scheme: light;
 
-	--country-fill-inactive:     light-dark(#E3ECEA, #243639);
-	--country-fill-active:       light-dark(#CFE0DB, #3A5459);
-	--country-fill-selected:     light-dark(#2F7A68, #5FA895);
-	--country-outline-inactive:  light-dark(#BFCFCC, #33484D);
-	--country-outline-active:    light-dark(#2F7A68, #8CC4B4);
-	--country-outline-selected:  light-dark(#1D5445, #8CC4B4);
+  --bg: light-dark(#f4f8f7, #1c2a2e);
+  --surface: light-dark(#ffffff, #243639);
+  --border: light-dark(#d5e0de, #33484d);
+  --text: light-dark(#1c2a2e, #ffffff);
+  --text-muted: light-dark(#5b6e72, #a9b8bb);
+  --primary: light-dark(#2f7a68, #5fa895);
+  --primary-hover: light-dark(#256553, #8cc4b4);
+  --primary-press: light-dark(#1d5445, #3f8573);
+  --tint: light-dark(#dceee8, #2a4a45);
+  --error: light-dark(#b8493f, #d4756b);
 
-	--markers-venue:    light-dark(#1C2A2E, #E6F2EE);
-	--markers-festival: light-dark(#D2763A, #EE9A62);
+  --stop-gig: light-dark(#2f7a68, #5fa895);
+  --stop-travel: light-dark(#3f78a8, #6c9bc4);
+  --stop-free: light-dark(#a97c1e, #d9b26a);
+  --stop-unplanned: light-dark(#6b7b7f, #8a9a9e);
 
-	--space-1: 0.25rem;  /* 4px  */
-	--space-2: 0.5rem;   /* 8px  */
-	--space-3: 0.75rem;  /* 12px */
-	--space-4: 1rem;     /* 16px */
-	--space-6: 1.5rem;   /* 24px */
-	--space-8: 2rem;     /* 32px */
-	--space-12: 3rem;    /* 48px */
-	--space-16: 4rem;    /* 64px */
-	--space-24: 6rem;    /* 96px */
+  --country-fill-inactive: light-dark(#e3ecea, #243639);
+  --country-fill-active: light-dark(#cfe0db, #3a5459);
+  --country-fill-selected: light-dark(#2f7a68, #5fa895);
+  --country-outline-inactive: light-dark(#bfcfcc, #33484d);
+  --country-outline-active: light-dark(#2f7a68, #8cc4b4);
+  --country-outline-selected: light-dark(#1d5445, #8cc4b4);
+
+  --markers-venue: light-dark(#1c2a2e, #e6f2ee);
+  --markers-festival: light-dark(#d2763a, #ee9a62);
+
+  --space-1: 0.25rem; /* 4px  */
+  --space-2: 0.5rem; /* 8px  */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-24: 6rem; /* 96px */
+}
+
+.link {
+  text-decoration: none;
 }
