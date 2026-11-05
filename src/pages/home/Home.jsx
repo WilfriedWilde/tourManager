@@ -15,11 +15,11 @@ export default function Home() {
         <HomeLogged />
       ) : (
         <main>
-          <div class="home-section" id="logo-container">
+          <div className="home-section" id="logo-container">
             <LogoBanner className="logo-banner" />
           </div>
-          <div class="home-section" id="btn-container">
-            <Link to="/login" class="link">
+          <div className="home-section" id="btn-container">
+            <Link to="/login" className="link">
               <ButtonHome
                 btnID="btn-login"
                 label="login"

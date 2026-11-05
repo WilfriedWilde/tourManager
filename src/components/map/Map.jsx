@@ -1,18 +1,20 @@
-import { useEffect, useRef, useState } from 'react';
-import * as maplibregl from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
+import { useEffect, useRef, useState } from "react";
+import * as maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
 import { Protocol } from "pmtiles";
-import OrganizerMarkup from '../OrganizerMarkup';
-import { getColors } from '../../constants';
-import "./map.css"
+import OrganizerMarkup from "../OrganizerMarkup";
+import { getColors } from "../../constants";
+import "./map.css";
 
 const protocol = new Protocol();
 maplibregl.addProtocol("pmtiles", protocol.tile);
 
-export default function Map({ organizers = [] }) {
+export default function OrganizersMap({ organizers = [] }) {
   const container = useRef(null);
   const [map, setMap] = useState(null);
   const [loaded, setLoaded] = useState(false);
+
+  const colors = getColors();
 
   // create the map once
   useEffect(() => {
@@ -27,6 +29,11 @@ export default function Map({ organizers = [] }) {
           },
         },
         layers: [
+          {
+            id: "background",
+            type: "background",
+            paint: { "background-color": colors.page.bg.light },
+          },
           {
             id: "countries-fill",
             source: "countries",
@@ -68,9 +75,10 @@ export default function Map({ organizers = [] }) {
   return (
     <>
       <div ref={container} className="map" />
-      {map && organizers.map((o) => (
-        <OrganizerMarkup key={o.id} map={map} organizer={o} />
-      ))}
+      {map &&
+        organizers.map((o) => (
+          <OrganizerMarkup key={o.id} map={map} organizer={o} />
+        ))}
     </>
   );
 }
@@ -92,8 +100,8 @@ function updateCountries(map, countries) {
   map.setPaintProperty("countries-fill", "fill-color", [
     "case",
     ["in", ["get", "ADMIN"], ["literal", countries]],
-    colors.countries.fill.active.dark,
-    colors.countries.fill.inactive.dark,
+    colors.countries.fill.active.light,
+    colors.countries.fill.inactive.light,
   ]);
 
   map.setPaintProperty("countries-fill", "fill-opacity", [
@@ -106,7 +114,7 @@ function updateCountries(map, countries) {
   map.setPaintProperty("countries-outline", "line-color", [
     "case",
     ["in", ["get", "ADMIN"], ["literal", countries]],
-    colors.countries.outline.active.dark,
-    colors.countries.outline.inactive.dark,
+    colors.countries.outline.active.light,
+    colors.countries.outline.inactive.light,
   ]);
 }

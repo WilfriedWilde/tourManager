@@ -6,7 +6,7 @@ export default function ButtonHome({ btnID, label, size, Icon }) {
       <p htmlFor={btnID} className={`label-btn-home label-${size}`}>
         {label}
       </p>
-      <div class={`icon-container icon-${size}`}>
+      <div className={`icon-container icon-${size}`}>
         <Icon />
       </div>
     </button>
