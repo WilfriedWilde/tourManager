@@ -7,18 +7,23 @@
 }
 
 @font-face {
-  font-family: "Village";
-  src: url("./assets/fonts/village.ttf");
+  font-family: "Merriweather";
+  src: url("./assets/fonts/Merriweather.ttf");
 }
 
 @font-face {
-  font-family: "Averia";
-  src: url("./assets/fonts/averia.ttf");
+  font-family: "Archivo";
+  src: url("./assets/fonts/Archivo.ttf");
 }
 
 @font-face {
-  font-family: "Karma";
-  src: url("./assets/fonts/karma.ttf");
+  font-family: "Overpass";
+  src: url("./assets/fonts/Overpass.ttf");
+}
+
+@font-face {
+  font-family: "Domine";
+  src: url("./assets/fonts/Domine.ttf");
 }
 
 :root {
@@ -60,9 +65,10 @@
   --space-16: 4rem; /* 64px */
   --space-24: 6rem; /* 96px */
 
-  --font-title: "Village", sans-serif;
-  --font-subtitle: "Averia", sans-serif;
-  --font-main: "Karma", sans-serif;
+  --font-title: "Merriweather", sans-serif;
+  --font-subtitle: "Archivo", sans-serif;
+  --font-main: "Overpass", sans-serif;
+  --font-logo: "Domine", serif;
 }
 
 .link {
