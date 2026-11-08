@@ -26,6 +26,10 @@
   src: url("./assets/fonts/Domine.ttf");
 }
 
+html {
+  font-size: clamp(16px, calc(16px + (100vw - 1280px) * 0.01), 22px);
+}
+
 :root {
   color-scheme: light;
 
@@ -77,4 +81,12 @@
 
 .link {
   text-decoration: none;
+}
+
+.logo-dark {
+  fill: var(--text);
+}
+
+.logo-accent {
+  fill: var(--primary);
 }

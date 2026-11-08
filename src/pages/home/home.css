@@ -6,7 +6,7 @@ main {
   width: 100%;
   height: 100vh;
   background: linear-gradient(to bottom, var(--bg), var(--tint));
-  padding: var(--space-16) 0;
+  padding: var(--space-8) 0;
 }
 
 .home-section {
@@ -17,12 +17,12 @@ main {
 }
 
 #logo-container {
-  height: var(--space-16);
+  height: var(--space-8);
   pointer-events: none;
 }
 
 .logo-banner {
-  width: 100%;
+  height: 100%;
 }
 
 #slogan-container {
@@ -31,8 +31,9 @@ main {
   inset: 0;
   gap: var(--space-2);
   font-family: var(--font-title);
-  font-size: var(--space-16);
+  font-size: var(--space-12);
   font-weight: 500;
+  color: var(--text);
   pointer-events: none;
 }
 
@@ -45,10 +46,10 @@ main {
 .btn-home {
   display: flex;
   justify-content: center;
-  width: var(--space-48);
+  width: var(--space-32);
   padding: var(--space-2);
   font-family: var(--font-subtitle);
-  font-size: var(--space-6);
+  font-size: var(--space-4);
   border: none;
   background-color: transparent;
 }
