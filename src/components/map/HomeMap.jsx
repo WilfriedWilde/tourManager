@@ -5,8 +5,11 @@ import { Protocol } from "pmtiles";
 import { getColors } from "../../constants";
 import "./home-map.css";
 
+const degreesPerSecond = 6;
 const protocol = new Protocol();
 maplibregl.addProtocol("pmtiles", protocol.tile);
+
+let spinning = true;
 
 export default function HomeMap() {
   const container = useRef(null);
@@ -53,17 +56,43 @@ export default function HomeMap() {
       },
       center: [0, 20],
       zoom: 1.6,
-      minZoom: 0,
-      maxZoom: 1.6,
+      scrollZoom: false,
+      touchZoomRotate: false,
+      doubleClickZoom: false,
+      boxZoom: false,
     });
+
+    let frame = null;
+    let last = performance.now();
+
+    function spin(now) {
+      const dt = (now - last) / 1000;
+      last = now;
+
+      if (spinning) {
+        const c = m.getCenter();
+        m.setCenter([c.lng + degreesPerSecond * dt, c.lat]);
+      }
+
+      frame = requestAnimationFrame(spin);
+    }
 
     m.on("load", () => {
       m.setProjection({ type: "globe" });
       setMap(m);
       setLoaded(true);
+
+      last = performance.now();
+      frame = requestAnimationFrame(spin);
     });
 
+    m.on("mousedown", () => (spinning = false));
+    m.on("touchstart", () => (spinning = false));
+    m.on("mouseup", () => (spinning = true));
+    m.on("touchend", () => (spinning = true));
+
     return () => {
+      cancelAnimationFrame(frame);
       m.remove();
       setMap(null);
       setLoaded(false);
