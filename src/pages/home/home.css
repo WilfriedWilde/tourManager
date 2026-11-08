@@ -17,7 +17,7 @@ main {
 }
 
 #logo-container {
-  height: var(--space-8);
+  height: var(--space-12);
   pointer-events: none;
 }
 

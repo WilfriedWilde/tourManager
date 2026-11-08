@@ -53,6 +53,8 @@ export default function HomeMap() {
       },
       center: [0, 20],
       zoom: 1.6,
+      minZoom: 0,
+      maxZoom: 1.6,
     });
 
     m.on("load", () => {
