@@ -64,6 +64,10 @@
   --space-12: 3rem; /* 48px */
   --space-16: 4rem; /* 64px */
   --space-24: 6rem; /* 96px */
+  --space-32: 8rem; /* 128px */
+  --space-40: 10rem; /* 160px */
+  --space-48: 12rem; /* 192px */
+  --space-64: 16rem; /* 256px */
 
   --font-title: "Merriweather", sans-serif;
   --font-subtitle: "Archivo", sans-serif;

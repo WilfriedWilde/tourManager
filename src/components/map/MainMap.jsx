@@ -4,12 +4,12 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import { Protocol } from "pmtiles";
 import OrganizerMarkup from "../OrganizerMarkup";
 import { getColors } from "../../constants";
-import "./map.css";
+import "./main-map.css";
 
 const protocol = new Protocol();
 maplibregl.addProtocol("pmtiles", protocol.tile);
 
-export default function OrganizersMap({ organizers = [] }) {
+export default function MainMap({ organizers = [] }) {
   const container = useRef(null);
   const [map, setMap] = useState(null);
   const [loaded, setLoaded] = useState(false);
@@ -74,7 +74,7 @@ export default function OrganizersMap({ organizers = [] }) {
 
   return (
     <>
-      <div ref={container} className="map" />
+      <div ref={container} className="main-map" />
       {map &&
         organizers.map((o) => (
           <OrganizerMarkup key={o.id} map={map} organizer={o} />

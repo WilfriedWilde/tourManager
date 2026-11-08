@@ -1,6 +1,6 @@
 import Navbar from "../../components/navbar/Navbar";
 import useOrganizers from "../../hooks/useOrganizers";
-import OrganizersMap from "../../components/map/Map";
+import MainMap from "../../components/map/MainMap";
 
 export default function HomeLogged() {
   const { organizers, loading, error } = useOrganizers();
@@ -10,7 +10,7 @@ export default function HomeLogged() {
   return (
     <>
       <Navbar />
-      <OrganizersMap organizers={organizers} />
+      <MainMap organizers={organizers} />
     </>
   );
 }

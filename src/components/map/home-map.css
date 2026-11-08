@@ -1,0 +1,11 @@
+.home-map {
+  height: 70vh;
+  width: 70vh;
+  position: absolute;
+  bottom: var(--space-8);
+  z-index: 0;
+}
+
+.maplibregl-ctrl-bottom-right {
+  display: none;
+}
