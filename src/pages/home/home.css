@@ -38,18 +38,55 @@ main {
 }
 
 #btn-container {
+  gap: var(--space-1);
+  position: relative;
   background-color: var(--primary);
-  border: 5px solid var(--primary);
-  border-radius: 40px;
+  border: var(--space-1) solid var(--primary);
+  border-radius: var(--space-12);
 }
 
 .btn-home {
   display: flex;
   justify-content: center;
   width: var(--space-32);
+  height: 100%;
   padding: var(--space-2);
   font-family: var(--font-subtitle);
   font-size: var(--space-4);
+  font-weight: 100;
+  outline: 1px dashed transparent;
   border: none;
+  border-radius: var(--space-12);
   background-color: transparent;
+  color: var(--bg);
+  z-index: 1;
+  transition: 0.25s ease;
+}
+
+.btn-home:hover {
+  cursor: pointer;
+  outline: 1px dashed var(--bg);
+}
+
+#btn-selector {
+  position: absolute;
+  z-index: 0;
+  background-color: transparent;
+  border-radius: var(--space-12);
+  transform: translateX(0);
+  transition: 0.35s var(--ease-bounce);
+}
+
+#btn-container[data-mode="login"] #btn-selector {
+  background-color: var(--bg);
+  transform: translateX(calc(-50% - var(--space-1) / 2));
+}
+
+#btn-container[data-mode="register"] #btn-selector {
+  background-color: var(--bg);
+  transform: translateX(calc(50% + var(--space-1) / 2));
+}
+
+.selected {
+  color: var(--primary);
 }

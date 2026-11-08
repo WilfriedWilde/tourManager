@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useAuth } from "../../components/AuthContext";
 import LogoBanner from "../../assets/logos/logo_banner.svg?react";
 import HomeLogged from "./HomeLogged";
@@ -6,6 +7,7 @@ import HomeMap from "../../components/map/HomeMap";
 
 export default function Home() {
   const { user } = useAuth();
+  const [mode, setMode] = useState("");
 
   return (
     <>
@@ -22,13 +24,24 @@ export default function Home() {
             <p>Play more gigs.</p>
             <p>Stay broke.</p>
           </div>
-          <div className="home-section" id="btn-container">
-            <button id="btn-login" type="button" className="btn-home">
+          <div className="home-section" id="btn-container" data-mode={mode}>
+            <button
+              id="btn-login"
+              type="button"
+              className={`btn-home ${mode === "login" ? "selected" : ""}`}
+              onClick={() => setMode("login")}
+            >
               login
             </button>
-            <button id="btn-register" type="button" className="btn-home">
+            <button
+              id="btn-register"
+              type="button"
+              className={`btn-home ${mode === "register" ? "selected" : ""}`}
+              onClick={() => setMode("register")}
+            >
               register
             </button>
+            <div id="btn-selector" className="btn-home"></div>
           </div>
         </main>
       )}
