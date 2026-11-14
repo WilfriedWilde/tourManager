@@ -1,0 +1,40 @@
+.form-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.form-section label {
+  text-transform: capitalize;
+  font-family: var(--font-main);
+  font-size: var(--space-4);
+  font-weight: 500;
+  color: var(--text);
+}
+
+.form-section input {
+  width: 100%;
+  font-family: var(--font-main);
+  font-size: var(--space-3);
+  font-weight: 500;
+  color: var(--text);
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--space-1);
+  outline-offset: 2px;
+  outline: 2px solid transparent;
+  background-color: var(--bg);
+  transition: 0.2s ease;
+}
+
+.form-section input::placeholder {
+  color: var(--text-muted);
+  font-size: var(--space-2);
+  font-weight: 300;
+}
+
+.form-section input:focus {
+  outline: 2px solid var(--primary);
+}

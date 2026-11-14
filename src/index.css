@@ -43,7 +43,7 @@ html {
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
 
   --bg: light-dark(#f4f8f7, #1c2a2e);
   --surface: light-dark(#ffffff, #243639);
@@ -90,20 +90,7 @@ html {
   --font-main: "Overpass", sans-serif;
   --font-logo: "Domine", serif;
 
-  --ease-bounce: linear(
-    0,
-    0.399 6.2%,
-    0.705 13%,
-    0.916 20.4%,
-    0.989 24.4%,
-    1.044 28.7%,
-    1.088 35.4%,
-    1.099 43.3%,
-    1.087 50.3%,
-    1.014 76.2%,
-    1.003 86.4%,
-    1
-  );
+  --ease-1: cubic-bezier(0.85, 0.09, 0.15, 0.91);
 }
 
 .link {

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 import "./authform.css";
 import InputForm from "./InputForm";
 
-export default function AuthForm(formType) {
+export default function AuthForm({ formType, selected }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +22,7 @@ export default function AuthForm(formType) {
   }
 
   function handlePasswordChange(newPassword) {
-    setUsername(newPassword.trim());
+    setPassword(newPassword.trim());
   }
 
   async function handleSubmit(e) {
@@ -41,36 +41,41 @@ export default function AuthForm(formType) {
   }
 
   return (
-    <form id="auth-form" onSubmit={handleSubmit}>
-      {type === "login" ? (
+    <form
+      className={`auth-form ${formType}-form ${selected ? "show" : ""}`}
+      onSubmit={handleSubmit}
+    >
+      {formType === "login" ? (
         <h2 className="authform-title">Welcome back</h2>
       ) : (
         <h2 className="authform-title">Create your account</h2>
       )}
 
-      {formType === "register" && (
+      <div className="form-inputs-container">
+        {formType === "register" && (
+          <InputForm
+            inputType="username"
+            formType={formType}
+            value={username}
+            handleOnChange={handleUsernameChange}
+          />
+        )}
         <InputForm
-          inputType="username"
+          inputType="email"
           formType={formType}
-          value={username}
-          handleOnChange={handleUsernameChange}
+          value={email}
+          handleOnChange={handleEmailChange}
         />
-      )}
-      <InputForm
-        inputType="email"
-        formType={formType}
-        value={email}
-        handleOnChange={handleEmailChange}
-      />
-      <InputForm
-        inputType="password"
-        formType={formType}
-        value={password}
-        handleOnChange={handlePasswordChange}
-      />
+        <InputForm
+          inputType="password"
+          formType={formType}
+          value={password}
+          handleOnChange={handlePasswordChange}
+        />
+      </div>
       {error && <p className="form-error">{error}</p>}
-      <button type="submit" className="submit-btn" id="login-form-btn">
-        login
+      <button type="submit" className="submit-btn">
+        {formType}
       </button>
     </form>
   );

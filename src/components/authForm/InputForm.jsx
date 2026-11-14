@@ -28,7 +28,7 @@ export default function InputForm({
       <input
         value={value}
         id={id}
-        type={type === "username" ? "text" : inputType}
+        type={inputType === "username" ? "text" : inputType}
         minLength={minLengths[inputType]}
         maxLength={maxLengths[inputType]}
         autoComplete={autoCompletes[inputType]}

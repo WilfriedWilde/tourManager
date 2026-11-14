@@ -4,6 +4,7 @@ import LogoBanner from "../../assets/logos/logo_banner.svg?react";
 import HomeLogged from "./HomeLogged";
 import "./home.css";
 import HomeMap from "../../components/map/HomeMap";
+import AuthForm from "../../components/authForm/AuthForm";
 
 export default function Home() {
   const { user } = useAuth();
@@ -14,7 +15,7 @@ export default function Home() {
       {user ? (
         <HomeLogged />
       ) : (
-        <main>
+        <main className="home-main">
           <div className="home-section" id="logo-container">
             <LogoBanner className="logo-banner" />
           </div>
@@ -43,6 +44,8 @@ export default function Home() {
             </button>
             <div id="btn-selector" className="btn-home"></div>
           </div>
+          <AuthForm formType="login" selected={mode === "login"} />
+          <AuthForm formType="register" selected={mode === "register"} />
         </main>
       )}
     </>
