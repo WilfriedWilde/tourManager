@@ -60,9 +60,15 @@
   border: none;
   border-radius: var(--space-12);
   background-color: transparent;
-  color: var(--bg);
+  color: var(--text);
   z-index: 1;
   transition: 0.6s var(--ease-1);
+}
+
+@media (prefers-color-scheme: light) {
+  .btn-home {
+    color: var(--bg);
+  }
 }
 
 .btn-home:hover {
@@ -90,5 +96,5 @@
 }
 
 .selected {
-  color: var(--primary);
+  color: var(--text);
 }

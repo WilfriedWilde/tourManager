@@ -5,6 +5,8 @@ import { Protocol } from "pmtiles";
 import { getColors } from "../../constants";
 import "./home-map.css";
 
+const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+const theme = isDark ? "dark" : "light";
 const degreesPerSecond = 6;
 const protocol = new Protocol();
 maplibregl.addProtocol("pmtiles", protocol.tile);
@@ -33,14 +35,14 @@ export default function HomeMap() {
           {
             id: "background",
             type: "background",
-            paint: { "background-color": colors.page.bg.light },
+            paint: { "background-color": colors.page.bg[theme] },
           },
           {
             id: "countries-fill",
             source: "countries",
             "source-layer": "countries",
             type: "fill",
-            paint: { "fill-color": colors.countries.fill.inactive.light },
+            paint: { "fill-color": colors.countries.fill.inactive[theme] },
           },
           {
             id: "countries-outline",
@@ -49,7 +51,7 @@ export default function HomeMap() {
             type: "line",
             paint: {
               "line-width": 0.5,
-              "line-color": colors.countries.outline.inactive.light,
+              "line-color": colors.countries.outline.inactive[theme],
             },
           },
         ],

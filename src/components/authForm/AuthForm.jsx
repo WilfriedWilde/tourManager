@@ -9,12 +9,13 @@ export default function AuthForm({ formType, selected }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const validPassword = validatePassword(password);
   const [error, setError] = useState("");
   const { setUser } = useAuth();
   const navigate = useNavigate();
 
   function handleUsernameChange(newUsername) {
-    setUsername(newUsername.trim());
+    setUsername(newUsername);
   }
 
   function handleEmailChange(newEmail) {
@@ -22,7 +23,7 @@ export default function AuthForm({ formType, selected }) {
   }
 
   function handlePasswordChange(newPassword) {
-    setPassword(newPassword.trim());
+    setPassword(newPassword);
   }
 
   async function handleSubmit(e) {
@@ -70,13 +71,31 @@ export default function AuthForm({ formType, selected }) {
           inputType="password"
           formType={formType}
           value={password}
+          validation={validPassword}
           handleOnChange={handlePasswordChange}
         />
       </div>
-      {error && <p className="form-error">{error}</p>}
+      <p className={`form-error ${error ? "show" : ""}`}>{error}</p>
       <button type="submit" className="submit-btn">
         {formType}
       </button>
     </form>
   );
+}
+
+function validatePassword(password) {
+  const letter = [...password].some((c) => {
+    const code = c.toLowerCase().charCodeAt(0);
+    return code >= 97 && code <= 122;
+  });
+  const digit = [...password].some((c) => {
+    const code = c.charCodeAt(0);
+    return code >= 48 && code <= 57;
+  });
+
+  return {
+    valid: letter && digit,
+    letter,
+    digit,
+  };
 }

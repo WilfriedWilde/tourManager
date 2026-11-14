@@ -38,3 +38,28 @@
 .form-section input:focus {
   outline: 2px solid var(--primary);
 }
+
+.invalid-password {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.invalid-password.show {
+  display: flex;
+}
+
+.invalid-password p {
+  font-family: var(--font-main);
+  font-size: var(--space-2);
+  font-weight: 300;
+  color: var(--error);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+.invalid-password p.show {
+  opacity: 1;
+}

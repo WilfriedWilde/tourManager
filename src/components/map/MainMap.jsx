@@ -88,7 +88,7 @@ function getCountries(organizers) {
     organizers.map((o) => {
       const country = o.country;
       return country.charAt(0).toUpperCase() + country.slice(1);
-    }),
+    })
   );
 
   return [...countries];
