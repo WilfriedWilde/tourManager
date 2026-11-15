@@ -1,16 +1,14 @@
-import useOrganizers from "./hooks/useOrganizers";
-import Map from "./components/map/Map";
+import { Routes, Route } from "react-router";
+import Home from "./pages/home/Home";
 
 function App() {
-    // TODO: implement login first
-    const {organizers, loadingOrganizers, errorOrganizers} = useOrganizers();
-
-    if (loadingOrganizers) return <p>Loading organizers...</p>;
-    if (errorOrganizers) return <p>Something went wrong while loading organizers :(</p>;
-
-    return (
-        <Map organizers={organizers} />
-    );
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;

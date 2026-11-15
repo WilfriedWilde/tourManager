@@ -1,16 +1,106 @@
-*, *::before, *::after {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Merriweather";
+  src: url("./assets/fonts/Merriweather.ttf") format("truetype");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Archivo";
+  src: url("./assets/fonts/Archivo.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Overpass";
+  src: url("./assets/fonts/Overpass.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Domine";
+  src: url("./assets/fonts/Domine.ttf") format("truetype");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  font-size: clamp(16px, calc(16px + (100vw - 1280px) * 0.01), 22px);
 }
 
 :root {
-	--country-fill-inactive: "#000000";
-	--country-fill-active: "#c9c9c9";
-	--country-fill-selected: "#00ff00";
-	--country-outline-inactive: "#000000";
-	--country-outline-active: "#000000";
-	--country-outline-selected: "#000000";
-	--markers-venue: "#006eff",
-	--markers-festival: "#fff200",
+  color-scheme: light dark;
+
+  --bg: light-dark(#f4f8f7, #1c2a2e);
+  --surface: light-dark(#ffffff, #243639);
+  --border: light-dark(#d5e0de, #33484d);
+  --text: light-dark(#1c2a2e, #ffffff);
+  --text-muted: light-dark(#5b6e72, #a9b8bb);
+  --primary: light-dark(#2f7a68, #5fa895);
+  --primary-hover: light-dark(#256553, #8cc4b4);
+  --primary-press: light-dark(#1d5445, #3f8573);
+  --tint: light-dark(#dceee8, #2a4a45);
+  --error: light-dark(#b8493f, #d4756b);
+
+  --stop-gig: light-dark(#2f7a68, #5fa895);
+  --stop-travel: light-dark(#3f78a8, #6c9bc4);
+  --stop-free: light-dark(#a97c1e, #d9b26a);
+  --stop-unplanned: light-dark(#6b7b7f, #8a9a9e);
+
+  --country-fill-inactive: light-dark(#e3ecea, #243639);
+  --country-fill-active: light-dark(#cfe0db, #3a5459);
+  --country-fill-selected: light-dark(#2f7a68, #5fa895);
+  --country-outline-inactive: light-dark(#bfcfcc, #33484d);
+  --country-outline-active: light-dark(#2f7a68, #8cc4b4);
+  --country-outline-selected: light-dark(#1d5445, #8cc4b4);
+
+  --markers-venue: light-dark(#1c2a2e, #e6f2ee);
+  --markers-festival: light-dark(#d2763a, #ee9a62);
+
+  --space-1: 0.25rem; /* 4px  */
+  --space-2: 0.5rem; /* 8px  */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+  --space-24: 6rem; /* 96px */
+  --space-32: 8rem; /* 128px */
+  --space-40: 10rem; /* 160px */
+  --space-48: 12rem; /* 192px */
+  --space-64: 16rem; /* 256px */
+
+  --font-title: "Merriweather", sans-serif;
+  --font-subtitle: "Archivo", sans-serif;
+  --font-main: "Overpass", sans-serif;
+  --font-logo: "Domine", serif;
+
+  --ease-1: cubic-bezier(0.85, 0.09, 0.15, 0.91);
+}
+
+.link {
+  text-decoration: none;
+}
+
+.logo-dark {
+  fill: var(--text);
+}
+
+.logo-accent {
+  fill: var(--primary);
 }
