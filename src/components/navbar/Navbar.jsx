@@ -26,11 +26,11 @@ export default function Navbar() {
   return (
     <nav id="navbar">
       <ButtonNavbar
-        label="profile"
+        label={user.username}
         icon={IconProfile}
         handleClick={handleProfile}
       />
-      <div className="navbar-icon-container">
+      <div className="navbar-logo-container">
         <LogoBanner className="logo-banner" />
       </div>
       <ButtonNavbar

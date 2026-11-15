@@ -8,15 +8,38 @@
   z-index: 999;
 }
 
-.navbar-section {
+.btn-navbar {
   display: flex;
-  gap: var(--space-3);
+  align-items: center;
+  height: var(--space-8);
+  gap: var(--space-2);
+  border: 2px solid var(--border);
+  border-radius: var(--space-2);
+  background-color: var(--primary);
+  padding: var(--space-1);
+  transition: 0.3s ease;
+}
+
+.btn-navbar:hover {
+  cursor: pointer;
+  background-color: var(--primary-hover);
+}
+
+.btn-navbar p {
+  font-family: var(--font-main);
+  font-size: var(--space-3);
+  font-weight: 300;
+  color: var(--text);
 }
 
 .navbar-icon-container {
-  height: var(--space-12);
+  background-color: var(--text);
+  height: 100%;
+  display: flex;
+  padding: var(--space-1);
+  border-radius: var(--space-1);
 }
 
 .navbar-logo-container {
-  height: var(--space-6);
+  height: var(--space-12);
 }
