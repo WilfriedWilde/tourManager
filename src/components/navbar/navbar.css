@@ -43,3 +43,13 @@
 .navbar-logo-container {
   height: var(--space-12);
 }
+
+@media (prefers-color-scheme: light) {
+  .btn-navbar p {
+    color: var(--bg);
+  }
+
+  .navbar-icon-container {
+    background-color: var(--bg);
+  }
+}
