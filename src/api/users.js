@@ -50,5 +50,6 @@ export async function getCurrentUser() {
     err.code = errorBody?.code;
     throw err;
   }
+
   return response.json();
 }
