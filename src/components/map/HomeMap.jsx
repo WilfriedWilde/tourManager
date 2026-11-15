@@ -78,7 +78,7 @@ export default function HomeMap() {
 
       frame = requestAnimationFrame(spin);
     }
-
+    // TODO: setup loader while map loads
     m.on("load", () => {
       m.setProjection({ type: "globe" });
       setMap(m);
