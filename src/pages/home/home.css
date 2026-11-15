@@ -78,21 +78,24 @@
 
 #btn-selector {
   position: absolute;
+  width: auto;
+  left: 0;
+  right: 0;
   z-index: 0;
   background-color: transparent;
   border-radius: var(--space-12);
   transform: translateX(0);
-  transition: 0.6s var(--ease-1);
+  transition: right 0.6s var(--ease-1), left 0.6s var(--ease-1);
 }
 
 #btn-container[data-mode="login"] #btn-selector {
+  right: 50%;
   background-color: var(--bg);
-  transform: translateX(calc(-50% - var(--space-1) / 2));
 }
 
 #btn-container[data-mode="register"] #btn-selector {
+  left: 50%;
   background-color: var(--bg);
-  transform: translateX(calc(50% + var(--space-1) / 2));
 }
 
 .selected {

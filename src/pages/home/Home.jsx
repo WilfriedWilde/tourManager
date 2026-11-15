@@ -2,13 +2,19 @@ import { useState } from "react";
 import { useAuth } from "../../components/AuthContext";
 import LogoBanner from "../../assets/logos/logo_banner.svg?react";
 import HomeLogged from "./HomeLogged";
-import "./home.css";
 import HomeMap from "../../components/map/HomeMap";
 import AuthForm from "../../components/authForm/AuthForm";
+import Loader from "../../components/loader/Loader";
+import "./home.css";
 
 export default function Home() {
   const { user } = useAuth();
   const [mode, setMode] = useState("");
+  const [mapLoaded, setMapLoaded] = useState(false);
+
+  function handleSelectMode(btn, mode) {
+    btn.classList.contains("selected") ? setMode("") : setMode(mode);
+  }
 
   return (
     <>
@@ -16,10 +22,11 @@ export default function Home() {
         <HomeLogged />
       ) : (
         <main className="home-main">
+          <Loader loaded={mapLoaded} />
           <div className="home-section" id="logo-container">
             <LogoBanner className="logo-banner" />
           </div>
-          <HomeMap />
+          <HomeMap setLoaded={setMapLoaded} />
           <div className="home-section" id="slogan-container">
             <p>Book more tours.</p>
             <p>Play more gigs.</p>
@@ -30,7 +37,7 @@ export default function Home() {
               id="btn-login"
               type="button"
               className={`btn-home ${mode === "login" ? "selected" : ""}`}
-              onClick={() => setMode("login")}
+              onClick={(e) => handleSelectMode(e.target, "login")}
             >
               login
             </button>
@@ -38,7 +45,7 @@ export default function Home() {
               id="btn-register"
               type="button"
               className={`btn-home ${mode === "register" ? "selected" : ""}`}
-              onClick={() => setMode("register")}
+              onClick={(e) => handleSelectMode(e.target, "register")}
             >
               register
             </button>

@@ -1,0 +1,50 @@
+.loader {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg);
+    z-index: 999;
+    transition: 0.5s var(--ease-1);
+}
+
+.loader.hide {
+    animation: hide 1s var(--ease-1) forwards;
+}
+
+@keyframes hide {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-110%);
+    }
+}
+
+.logo-loader {
+    height: 80%;
+}
+
+#eye-up-loader {
+    animation: glow 3s infinite;
+}
+
+#eye-up-loader.stop {
+    animation-play-state: paused;
+}
+
+@keyframes glow {
+    0% {
+        fill: transparent;
+    }
+
+    75% {
+        fill: var(--primary);
+    }
+
+    100% {
+        fill: transparent;
+    }
+}

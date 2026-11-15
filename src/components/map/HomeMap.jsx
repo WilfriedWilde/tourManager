@@ -13,10 +13,9 @@ maplibregl.addProtocol("pmtiles", protocol.tile);
 
 let spinning = true;
 
-export default function HomeMap() {
+export default function HomeMap({ setLoaded }) {
   const container = useRef(null);
   const [map, setMap] = useState(null);
-  const [loaded, setLoaded] = useState(false);
 
   const colors = getColors();
 
@@ -78,14 +77,16 @@ export default function HomeMap() {
 
       frame = requestAnimationFrame(spin);
     }
-    // TODO: setup loader while map loads
+
     m.on("load", () => {
       m.setProjection({ type: "globe" });
       setMap(m);
-      setLoaded(true);
 
-      last = performance.now();
-      frame = requestAnimationFrame(spin);
+      m.on("idle", () => {
+        setLoaded(true);
+        last = performance.now();
+        frame = requestAnimationFrame(spin);
+      });
     });
 
     m.on("mousedown", () => (spinning = false));
