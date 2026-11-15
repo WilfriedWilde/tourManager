@@ -1,11 +1,22 @@
 #navbar {
-    display: flex;
-    justify-content: space-between;
-    color: var(--text);
-    background-color: var(--bg);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-8);
+  z-index: 999;
 }
 
 .navbar-section {
-    display: flex;
-    gap: var(--space-3);
+  display: flex;
+  gap: var(--space-3);
+}
+
+.navbar-icon-container {
+  height: var(--space-12);
+}
+
+.navbar-logo-container {
+  height: var(--space-6);
 }

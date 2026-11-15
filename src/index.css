@@ -104,3 +104,8 @@ html {
 .logo-accent {
   fill: var(--primary);
 }
+
+.icon {
+  width: 100%;
+  height: 100%;
+}

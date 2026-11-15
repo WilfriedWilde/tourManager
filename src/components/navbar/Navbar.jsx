@@ -1,11 +1,17 @@
-import { Link, Navigate, useNavigate } from "react-router";
 import { useAuth } from "../AuthContext";
 import { logout } from "../../api/users";
+import ButtonNavbar from "./ButtonNavbar";
+import IconProfile from "../../assets/icons/profile.svg?react";
+import LogoBanner from "../../assets/logos/logo_banner.svg?react";
+import IconLogout from "../../assets/icons/logout.svg?react";
 import "./navbar.css";
 
 export default function Navbar() {
   const { user, setUser } = useAuth();
-  const navigate = useNavigate();
+
+  function handleProfile() {
+    console.log(`hello ${user.username}!`);
+  }
 
   async function handleLogout() {
     try {
@@ -16,29 +22,22 @@ export default function Navbar() {
       console.error(err);
     }
   }
-  // TODO: use ButtonHome component to replace exisiting buttons
+
   return (
     <nav id="navbar">
-      <h1>Tourwise</h1>
-      <div className="navbar-section">
-        {user ? (
-          <>
-            <p className="user-name">{user.username}</p>
-            <button className="btn-logout" onClick={handleLogout}>
-              logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/signup" className="log-btn">
-              signup
-            </Link>
-            <Link to="/login" className="log-btn">
-              login
-            </Link>
-          </>
-        )}
+      <ButtonNavbar
+        label="profile"
+        icon={IconProfile}
+        handleClick={handleProfile}
+      />
+      <div className="navbar-icon-container">
+        <LogoBanner className="logo-banner" />
       </div>
+      <ButtonNavbar
+        label="logout"
+        icon={IconLogout}
+        handleClick={handleLogout}
+      />
     </nav>
   );
 }
