@@ -1,5 +1,6 @@
 import Navbar from "../../components/navbar/Navbar";
 import useTours from "../../hooks/useTours";
+import Tour from "../../components/tour/Tour";
 
 export default function HomeLogged() {
   const { tours, loading, error } = useTours();
@@ -7,8 +8,13 @@ export default function HomeLogged() {
   return (
     <>
       <Navbar />
-      <main className="home-main">
+      <main className="home-main home-logged">
         <div className="tours">
+          <div className="header">
+            <p>timeframe</p>
+            <p>name</p>
+            <p>status</p>
+          </div>
           {loading ? (
             <p className="loading-tours">loading tours</p>
           ) : error ? (

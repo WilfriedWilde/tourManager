@@ -11,6 +11,10 @@
   overflow: hidden;
 }
 
+.home-logged {
+  padding: var(--space-48) 0 var(--space-8) 0;
+}
+
 .home-section {
   display: flex;
   justify-content: center;
@@ -65,12 +69,6 @@
   transition: 0.6s var(--ease-1);
 }
 
-@media (prefers-color-scheme: light) {
-  .btn-home {
-    color: var(--bg);
-  }
-}
-
 .btn-home:hover {
   cursor: pointer;
   outline: 1px dashed var(--bg);
@@ -85,7 +83,9 @@
   background-color: transparent;
   border-radius: var(--space-12);
   transform: translateX(0);
-  transition: right 0.6s var(--ease-1), left 0.6s var(--ease-1);
+  transition:
+    right 0.6s var(--ease-1),
+    left 0.6s var(--ease-1);
 }
 
 #btn-container[data-mode="login"] #btn-selector {
@@ -100,4 +100,47 @@
 
 .selected {
   color: var(--text);
+}
+
+.tours {
+  width: 50vw;
+  min-width: calc(var(--space-64) * 2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.tours .header {
+  width: 100%;
+  height: var(--space-16);
+  display: flex;
+  align-items: center;
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--space-1);
+  background-color: var(--stop-unplanned);
+  color: var(--text);
+}
+
+.tours .header p {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-subtitle);
+  font-size: var(--space-4);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+@media (prefers-color-scheme: light) {
+  .btn-home {
+    color: var(--bg);
+  }
+
+  .tours .header {
+    color: var(--bg);
+  }
 }

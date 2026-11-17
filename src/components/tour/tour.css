@@ -1,0 +1,96 @@
+.tour {
+  width: 100%;
+  min-height: var(--space-16);
+  display: flex;
+  align-items: center;
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--space-1);
+  background-color: var(--surface);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: 0.2s ease;
+}
+
+.tour:hover {
+  cursor: pointer;
+  outline: 2px solid var(--primary);
+}
+
+.tour-col {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-main);
+  color: var(--text);
+  gap: var(--space-1);
+}
+
+.up {
+  font-size: var(--space-4);
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.down {
+  font-size: var(--space-3);
+  font-weight: 300;
+  text-align: center;
+}
+
+.status-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.status {
+  width: var(--space-4);
+  height: var(--space-4);
+  border-radius: 50%;
+  position: relative;
+}
+
+.booked {
+  background-color: var(--primary);
+}
+
+.booked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    var(--primary),
+    transparent 60%
+  );
+}
+
+.pending {
+  background-color: var(--stop-free);
+}
+
+.pending::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    var(--stop-free),
+    transparent 60%
+  );
+}
