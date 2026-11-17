@@ -1,9 +1,13 @@
+import { useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import useTours from "../../hooks/useTours";
 import Tour from "../../components/tour/Tour";
+import TourBorder from "../../assets/icons/tour-border.svg?react";
+import IconAdd from "../../assets/icons/add.svg?react";
 
 export default function HomeLogged() {
   const { tours, loading, error } = useTours();
+  const [hovered, setHovered] = useState(false);
 
   return (
     <>
@@ -25,6 +29,17 @@ export default function HomeLogged() {
           ) : (
             tours.map((t) => <Tour key={`tour-${t.id}`} data={t} />)
           )}
+          <div className={`add-tour ${hovered ? "add-tour-hovered" : ""}`}>
+            <div className="add-icon-container">
+              <IconAdd
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
+              />
+            </div>
+            <TourBorder
+              className={`tour-border ${hovered ? "tour-border-hovered" : ""}`}
+            />
+          </div>
         </div>
       </main>
     </>

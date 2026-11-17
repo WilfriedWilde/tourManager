@@ -103,6 +103,7 @@
 }
 
 .tours {
+  position: relative;
   width: 50vw;
   min-width: calc(var(--space-64) * 2);
   display: flex;
@@ -133,6 +134,66 @@
   font-size: var(--space-4);
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.loading-tours {
+  width: 100%;
+  font-family: var(--font-main);
+  font-size: var(--space-3);
+  font-weight: 300;
+  text-align: center;
+}
+
+.add-tour {
+  width: 100%;
+  height: var(--space-16);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-2);
+  color: var(--text);
+  border-radius: var(--space-1);
+  background-color: transparent;
+  transition: 0.2s ease;
+}
+
+.tour-border {
+  position: absolute;
+  left: 0;
+  bottom: calc(var(--space-1) * -1);
+  height: calc(var(--space-16) + calc(var(--space-1)));
+  width: calc(100% + var(--space-1));
+  z-index: 0;
+  pointer-events: none;
+}
+
+.tour-border rect {
+  width: calc(100% - var(--space-1));
+  height: calc(100% - var(--space-2));
+  stroke: var(--border);
+  stroke-width: 2px;
+  stroke-dasharray: var(--space-6) var(--space-2);
+  fill: none;
+  transition: 0.2s ease;
+}
+
+.tour-border-hovered rect {
+  fill: color-mix(in srgb, var(--text-muted), transparent 90%);
+}
+
+.add-icon-container {
+  position: relative;
+  width: var(--space-8);
+  height: var(--space-8);
+  display: flex;
+}
+
+.add-icon-container:hover {
+  cursor: pointer;
+}
+
+.add-icon-container:hover svg {
+  fill: var(--primary);
 }
 
 @media (prefers-color-scheme: light) {
