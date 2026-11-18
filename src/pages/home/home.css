@@ -29,6 +29,8 @@
 
 .logo-banner {
   height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 #slogan-container {
@@ -216,6 +218,22 @@
 
 .add-icon-container:hover svg {
   fill: var(--primary);
+}
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  background-color: color-mix(in srgb, var(--bg), transparent 20%);
+  backdrop-filter: blur(3px);
+  transition: opacity 0.3s ease;
+}
+
+#overlay.show-overlay {
+  opacity: 1;
+  visibility: visible;
+  z-index: 20;
 }
 
 @media (prefers-color-scheme: light) {

@@ -2,8 +2,8 @@
   position: fixed;
   top: 0;
   width: 100%;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   padding: var(--space-8);
   z-index: 999;
 }
@@ -18,6 +18,14 @@
   background-color: var(--primary);
   padding: var(--space-1);
   transition: 0.3s ease;
+}
+
+.btn-navbar:first-child {
+  justify-self: start;
+}
+
+.btn-navbar:last-child {
+  justify-self: end;
 }
 
 .btn-navbar:hover {
@@ -42,6 +50,8 @@
 
 .navbar-logo-container {
   height: var(--space-12);
+  display: flex;
+  justify-content: center;
 }
 
 @media (prefers-color-scheme: light) {
