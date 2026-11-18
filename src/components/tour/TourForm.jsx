@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { formatDate, toStringDate } from "../../utils/format";
+import useCreateTour from "../../hooks/useCreateTour";
 import InputTourForm from "./InputTourForm";
 import IconConfirm from "../../assets/icons/confirm.svg?react";
 import IconCancel from "../../assets/icons/cancel.svg?react";
@@ -16,6 +17,13 @@ export default function TourForm({ show, onDone, onCancel }) {
 
   const minDate = toStringDate(new Date());
   const numDays = getNumDays(startDate, endDate);
+
+  function resetStates() {
+    setProjectName("");
+    setTourName("");
+    setStartDate("");
+    setEndDate("");
+  }
 
   function handleChangeProjectName(newProjectName) {
     setProjectName(newProjectName);
@@ -35,11 +43,21 @@ export default function TourForm({ show, onDone, onCancel }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log(
+      useCreateTour({
+        project_name: projectName,
+        tour_name: tourName,
+        start: startDate,
+        end: endDate,
+      }),
+    );
+    resetStates();
     onDone();
   }
 
   function handleCancel(e) {
     e.preventDefault();
+    resetStates();
     onCancel();
   }
 

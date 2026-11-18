@@ -120,7 +120,6 @@
   padding: var(--space-2);
   border: 1px solid var(--border);
   border-radius: var(--space-1);
-  background-color: var(--stop-unplanned);
   color: var(--text);
 }
 

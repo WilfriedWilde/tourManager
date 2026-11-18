@@ -9,3 +9,20 @@ export async function getTours() {
 
   return response.json();
 }
+
+export async function postTour(data) {
+  const response = await fetch("/api/tours", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errBody = await response.json().catch(() => null);
+    const err = new Error(errBody?.message || `HTTP ${response.status}`);
+    err.code = errBody?.code;
+    throw err;
+  }
+
+  return response.json();
+}
