@@ -66,7 +66,7 @@
   background-color: transparent;
   color: var(--text);
   z-index: 1;
-  transition: 0.6s var(--ease-1);
+  transition: 0.3s ease;
 }
 
 .btn-home:hover {
@@ -154,7 +154,12 @@
   color: var(--text);
   border-radius: var(--space-1);
   background-color: transparent;
-  transition: 0.2s ease;
+  transition: 0.4s ease;
+}
+
+.icon-border {
+  fill: var(--border);
+  transition: 0.4s ease;
 }
 
 .tour-border {
@@ -171,14 +176,30 @@
   width: calc(100% - var(--space-1));
   height: calc(100% - var(--space-2));
   stroke: var(--border);
-  stroke-width: 2px;
-  stroke-dasharray: var(--space-6) var(--space-2);
-  fill: none;
-  transition: 0.2s ease;
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-dasharray: var(--space-4) var(--space-2);
+  fill: transparent;
+  animation: rotateBorder 3s linear reverse infinite;
+  animation-play-state: paused;
+  transition:
+    stroke 0.4s ease,
+    fill 0.4s ease;
 }
 
 .tour-border-hovered rect {
-  fill: color-mix(in srgb, var(--text-muted), transparent 90%);
+  fill: var(--surface);
+  stroke: var(--text);
+  animation-play-state: running;
+}
+
+@keyframes rotateBorder {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: calc(var(--space-4) + var(--space-2));
+  }
 }
 
 .add-icon-container {
@@ -186,6 +207,7 @@
   width: var(--space-8);
   height: var(--space-8);
   display: flex;
+  z-index: 10;
 }
 
 .add-icon-container:hover {

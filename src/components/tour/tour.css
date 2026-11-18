@@ -9,7 +9,7 @@
   background-color: var(--surface);
   outline: 2px solid transparent;
   outline-offset: 2px;
-  transition: 0.2s ease;
+  transition: 0.3s ease;
 }
 
 .tour:hover {

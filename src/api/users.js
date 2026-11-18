@@ -26,6 +26,7 @@ export async function login(credentials) {
     const errorBody = await response.json().catch(() => null);
     const err = new Error(errorBody?.message || `HTTP ${response.status}`);
     err.code = errorBody?.code;
+    console.log(errorBody);
     throw err;
   }
 
