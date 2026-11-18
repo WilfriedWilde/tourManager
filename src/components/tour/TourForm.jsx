@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { formatDate, toStringDate } from "../../utils/format";
 import InputTourForm from "./InputTourForm";
+import IconConfirm from "../../assets/icons/confirm.svg?react";
+import IconCancel from "../../assets/icons/cancel.svg?react";
 import "./tour.css";
 
 const MIN_NAME = 2;
 const MAX_NAME = 50;
 
-export default function TourForm({ show, onDone }) {
+export default function TourForm({ show, onDone, onCancel }) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [projectName, setProjectName] = useState("");
@@ -14,11 +16,6 @@ export default function TourForm({ show, onDone }) {
 
   const minDate = toStringDate(new Date());
   const numDays = getNumDays(startDate, endDate);
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    onDone();
-  }
 
   function handleChangeProjectName(newProjectName) {
     setProjectName(newProjectName);
@@ -34,6 +31,16 @@ export default function TourForm({ show, onDone }) {
 
   function handleChangeEnd(newEnd) {
     setEndDate(newEnd);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    onDone();
+  }
+
+  function handleCancel(e) {
+    e.preventDefault();
+    onCancel();
   }
 
   return (
@@ -89,7 +96,14 @@ export default function TourForm({ show, onDone }) {
             </p>
           </div>
         </div>
-        <button onClick={handleSubmit}>create tour</button>
+        <div className="tour-form-btns-container">
+          <button onClick={handleSubmit} className="icon-container-confirm">
+            <IconConfirm />
+          </button>
+          <button onClick={handleCancel} className="icon-container-cancel">
+            <IconCancel />
+          </button>
+        </div>
       </form>
     </>
   );

@@ -45,7 +45,11 @@ export default function HomeLogged() {
           </div>
         </div>
       </main>
-      <TourForm show={showTourForm} onDone={() => setShowTourForm(false)} />
+      <TourForm
+        show={showTourForm}
+        onDone={() => setShowTourForm(false)}
+        onCancel={() => setShowTourForm(false)}
+      />
       <div id="overlay" className={showTourForm ? "show-overlay" : ""}></div>
     </>
   );
