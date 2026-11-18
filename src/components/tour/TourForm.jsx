@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { formatDate, toStringDate } from "../../utils/format";
-import useCreateTour from "../../hooks/useCreateTour";
+import { toStringDate } from "../../utils/format";
+import { createTour } from "../../api/tours";
 import InputTourForm from "./InputTourForm";
 import IconConfirm from "../../assets/icons/confirm.svg?react";
 import IconCancel from "../../assets/icons/cancel.svg?react";
@@ -14,8 +14,11 @@ export default function TourForm({ show, onDone, onCancel }) {
   const [endDate, setEndDate] = useState("");
   const [projectName, setProjectName] = useState("");
   const [tourName, setTourName] = useState("");
+  const [error, setError] = useState(null);
 
-  const minDate = toStringDate(new Date());
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const minDate = toStringDate(tomorrow);
   const numDays = getNumDays(startDate, endDate);
 
   function resetStates() {
@@ -41,18 +44,22 @@ export default function TourForm({ show, onDone, onCancel }) {
     setEndDate(newEnd);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log(
-      useCreateTour({
+    setError(null);
+    try {
+      const tour = await createTour({
         project_name: projectName,
         tour_name: tourName,
         start: startDate,
         end: endDate,
-      }),
-    );
-    resetStates();
-    onDone();
+      });
+
+      resetStates();
+      onDone(tour);
+    } catch (err) {
+      setError(err);
+    }
   }
 
   function handleCancel(e) {
@@ -115,29 +122,31 @@ export default function TourForm({ show, onDone, onCancel }) {
           </div>
         </div>
         <div className="tour-form-btns-container">
-          <button onClick={handleSubmit} className="icon-container-confirm">
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="icon-container-confirm"
+          >
             <IconConfirm />
           </button>
-          <button onClick={handleCancel} className="icon-container-cancel">
+          <button
+            type="button"
+            onClick={handleCancel}
+            className="icon-container-cancel"
+          >
             <IconCancel />
           </button>
+          <p className={`form-error ${error ? "show" : ""}`}>
+            {error?.errors?.map((err) => (
+              <span key={err.field}>
+                {err.field} {err.message}
+              </span>
+            ))}
+          </p>
         </div>
       </form>
     </>
   );
-}
-
-function getConfirmed(contacts) {
-  const seen = new Set();
-
-  return contacts.filter((c) => {
-    if (c.status !== "confirmed" || seen.has(c.organizer_id)) {
-      return false;
-    }
-
-    seen.add(c.organizer_id);
-    return true;
-  });
 }
 
 function getNumDays(start, end) {

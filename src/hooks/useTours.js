@@ -13,5 +13,9 @@ export default function useTours() {
       .finally(() => setLoading(false));
   }, []);
 
-  return { tours, loading, error };
+  function addTour(tour) {
+    setTours((prev) => [...prev, tour]);
+  }
+
+  return { tours, loading, error, addTour };
 }

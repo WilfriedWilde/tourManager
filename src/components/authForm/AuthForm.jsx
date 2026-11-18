@@ -10,7 +10,7 @@ export default function AuthForm({ formType, selected }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const validPassword = validatePassword(password);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const { setUser } = useAuth();
   const navigate = useNavigate();
 
@@ -28,6 +28,7 @@ export default function AuthForm({ formType, selected }) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setError(null);
 
     try {
       const user =
@@ -37,7 +38,7 @@ export default function AuthForm({ formType, selected }) {
       setUser(user);
       navigate("/");
     } catch (err) {
-      setError(err.message);
+      setError(err);
     }
   }
 
@@ -75,7 +76,7 @@ export default function AuthForm({ formType, selected }) {
           handleOnChange={handlePasswordChange}
         />
       </div>
-      <p className={`form-error ${error ? "show" : ""}`}>{error}</p>
+      <p className={`form-error ${error ? "show" : ""}`}>{error?.message}</p>
       <button type="submit" className="submit-btn">
         {formType}
       </button>

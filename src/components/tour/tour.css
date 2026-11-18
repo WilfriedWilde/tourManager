@@ -8,7 +8,6 @@
   border-radius: var(--space-1);
   background-color: var(--surface);
   outline: 2px solid transparent;
-  outline-offset: 2px;
   transition: 0.3s ease;
 }
 
@@ -45,9 +44,7 @@
   background-color: var(--bg);
   opacity: 0;
   visibility: visible;
-  transition:
-    opacity 0.3s ease,
-    visibility 0.3s ease;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .show-tour-form {
@@ -260,8 +257,8 @@
   );
 }
 
-.creating {
-  background-color: var(--stop-travel);
+.unplanned {
+  background-color: var(--stop-unplanned);
 }
 
 .creating::before {

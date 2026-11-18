@@ -7,7 +7,7 @@ import TourBorder from "../../assets/icons/tour-border.svg?react";
 import IconAdd from "../../assets/icons/add.svg?react";
 
 export default function HomeLogged() {
-  const { tours, loading, error } = useTours();
+  const { tours, loading, error, addTour } = useTours();
   const [hovered, setHovered] = useState(false);
   const [showTourForm, setShowTourForm] = useState(false);
 
@@ -16,6 +16,7 @@ export default function HomeLogged() {
       <Navbar />
       <main className="home-main home-logged">
         <div className="tours">
+          <h2>my tours</h2>
           <div className="header">
             <p>timeframe</p>
             <p>name</p>
@@ -47,7 +48,10 @@ export default function HomeLogged() {
       </main>
       <TourForm
         show={showTourForm}
-        onDone={() => setShowTourForm(false)}
+        onDone={(tour) => {
+          if (tour) addTour(tour);
+          setShowTourForm(false);
+        }}
         onCancel={() => setShowTourForm(false)}
       />
       <div id="overlay" className={showTourForm ? "show-overlay" : ""}></div>
