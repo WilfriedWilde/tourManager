@@ -64,6 +64,7 @@ export default function TourForm({ show, onDone, onCancel }) {
 
   function handleCancel(e) {
     e.preventDefault();
+    setError(null);
     resetStates();
     onCancel();
   }
