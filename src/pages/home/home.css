@@ -8,7 +8,7 @@
   height: 100vh;
   background: linear-gradient(to bottom, var(--bg), var(--tint));
   padding: var(--space-8) 0;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .home-logged {
@@ -153,8 +153,9 @@
 }
 
 .add-tour {
+  position: relative;
   width: 100%;
-  height: var(--space-16);
+  height: calc(var(--space-24) + var(--space-1));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -168,8 +169,8 @@
 .tour-border {
   position: absolute;
   left: 0;
-  bottom: calc(var(--space-1) * -1);
-  height: calc(var(--space-16) + calc(var(--space-1)));
+  top: var(--space-1);
+  height: calc(var(--space-24) + calc(var(--space-1)));
   width: calc(100% + var(--space-1));
   z-index: 0;
   pointer-events: none;

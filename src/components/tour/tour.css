@@ -1,6 +1,6 @@
 .tour {
   width: 100%;
-  min-height: var(--space-16);
+  min-height: var(--space-24);
   display: flex;
   align-items: center;
   padding: var(--space-2);
