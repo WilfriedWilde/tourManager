@@ -32,18 +32,55 @@
   width: 100%;
   min-height: var(--space-16);
   display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  justify-content: center;
   align-items: center;
   padding: var(--space-2);
   border: 1px solid var(--border);
   border-radius: var(--space-1);
   background-color: var(--surface);
-  outline: 2px solid transparent;
-  outline-offset: 2px;
   transition: 0.3s ease;
+}
+
+.tour-form button {
+  display: flex;
+  justify-content: center;
+  width: var(--space-32);
+  height: 100%;
+  padding: var(--space-2);
+  font-family: var(--font-subtitle);
+  font-size: var(--space-4);
+  font-weight: 100;
+  border: none;
+  border-radius: var(--space-12);
+  background-color: var(--primary);
+  color: var(--text);
+  z-index: 1;
+  transition: 0.3s ease;
+}
+
+.tour-form button:hover {
+  cursor: pointer;
+  background-color: var(--primary-hover);
+}
+
+@media (prefers-color-scheme: light) {
+  .tour-form button {
+    color: var(--bg);
+  }
 }
 
 .show-tour-form {
   display: flex;
+}
+
+.form-content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: var(--space-2);
+  transition: 0.3s ease;
 }
 
 .form-date {
@@ -120,6 +157,26 @@
   background: radial-gradient(
     circle at center,
     var(--stop-free),
+    transparent 60%
+  );
+}
+
+.creating {
+  background-color: var(--stop-travel);
+}
+
+.creating::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    var(--stop-travel),
     transparent 60%
   );
 }

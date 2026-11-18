@@ -2,6 +2,8 @@ import { useState } from "react";
 import { formatDate, toStringDate } from "../../utils/format";
 import "./tour.css";
 
+const MAX_NAME = 50;
+
 export default function TourForm({ onDone }) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -19,58 +21,62 @@ export default function TourForm({ onDone }) {
   return (
     <>
       <form className="tour-form">
-        <div className="tour-col">
-          <div className="form-date">
+        <div className="form-content">
+          <div className="tour-col">
+            <div className="form-date">
+              <input
+                type="date"
+                min={minDate}
+                max={endDate}
+                className="up"
+                name="startDate"
+                placeholder="start"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+              <input
+                type="date"
+                min={startDate || minDate}
+                className="up"
+                name="endDate"
+                placeholder="end"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              />
+            </div>
+            <p className="down">{numDays ? `${numDays} days` : ""}</p>
+          </div>
+          <div className="tour-col">
             <input
-              type="date"
-              min={minDate}
-              max={endDate}
+              type="text"
+              minLength="2"
+              maxLength={`${MAX_NAME}`}
               className="up"
-              name="startDate"
-              placeholder="start"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
+              placeholder="project name"
+              name="projectName"
+              value={projectName}
+              onChange={(e) => setProjectName(e.target.value)}
             />
             <input
-              type="date"
-              min={startDate || minDate}
-              className="up"
-              name="endDate"
-              placeholder="end"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
+              type="text"
+              minLength="2"
+              maxLength={`${MAX_NAME}`}
+              className="down"
+              placeholder="tour name"
+              name="tourName"
+              value={tourName}
+              onChange={(e) => setTourName(e.target.value)}
             />
           </div>
-          <p className="down">{numDays ? `${numDays} days` : ""}</p>
-        </div>
-        <div className="tour-col">
-          <input
-            type="text"
-            minLength="2"
-            className="up"
-            placeholder="project name"
-            name="projectName"
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
-          />
-          <input
-            type="text"
-            minLength="2"
-            className="down"
-            placeholder="tour name"
-            name="tourName"
-            value={tourName}
-            onChange={(e) => setTourName(e.target.value)}
-          />
-        </div>
-        <div className="tour-col">
-          <div className="status-container up">
-            <div className="status pending"></div>
-            <p>pending</p>
+          <div className="tour-col">
+            <div className="status-container up">
+              <div className="status creating"></div>
+              <p>creating</p>
+            </div>
           </div>
         </div>
+        <button onClick={handleSubmit}>create tour</button>
       </form>
-      <button onClick={handleSubmit}>create tour</button>
     </>
   );
 }
