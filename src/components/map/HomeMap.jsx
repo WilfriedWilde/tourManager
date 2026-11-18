@@ -56,7 +56,7 @@ export default function HomeMap({ setLoaded }) {
         ],
       },
       center: [0, 20],
-      zoom: 1.6,
+      zoom: getZoom(container.current),
       scrollZoom: false,
       touchZoomRotate: false,
       doubleClickZoom: false,
@@ -94,8 +94,12 @@ export default function HomeMap({ setLoaded }) {
     m.on("mouseup", () => (spinning = true));
     m.on("touchend", () => (spinning = true));
 
+    const onResize = () => m.setZoom(getZoom(container.current));
+    window.addEventListener("resize", onResize);
+
     return () => {
       cancelAnimationFrame(frame);
+      window.removeEventListener("resize", onResize);
       m.remove();
       setMap(null);
       setLoaded(false);
@@ -103,4 +107,9 @@ export default function HomeMap({ setLoaded }) {
   }, []);
 
   return <div ref={container} className="home-map" />;
+}
+
+function getZoom(el) {
+  const size = Math.min(el.clientWidth, el.clientHeight);
+  return Math.log2((Math.PI * size) / 512);
 }

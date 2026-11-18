@@ -28,6 +28,34 @@
   gap: var(--space-1);
 }
 
+.tour-form {
+  width: 100%;
+  min-height: var(--space-16);
+  display: flex;
+  align-items: center;
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--space-1);
+  background-color: var(--surface);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: 0.3s ease;
+}
+
+.show-tour-form {
+  display: flex;
+}
+
+.form-date {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-main);
+  color: var(--text);
+  gap: var(--space-1);
+}
+
 .up {
   font-size: var(--space-4);
   font-weight: 500;
@@ -39,6 +67,7 @@
   font-size: var(--space-3);
   font-weight: 300;
   text-align: center;
+  min-height: var(--space-3);
 }
 
 .status-container {
