@@ -31,7 +31,6 @@ export default function HomeLogged() {
           ) : (
             tours.map((t) => <Tour key={`tour-${t.id}`} data={t} />)
           )}
-          <TourForm show={showTourForm} onDone={() => setShowTourForm(false)} />
           <div className={`add-tour ${hovered ? "add-tour-hovered" : ""}`}>
             <div className="add-icon-container">
               <IconAdd
@@ -46,6 +45,7 @@ export default function HomeLogged() {
           </div>
         </div>
       </main>
+      <TourForm show={showTourForm} onDone={() => setShowTourForm(false)} />
       <div id="overlay" className={showTourForm ? "show-overlay" : ""}></div>
     </>
   );
