@@ -23,9 +23,10 @@ export default function Tour({ data }) {
     <div className="tour">
       <div className="tour-col">
         <p className="up">{`${formatDate(start)} - ${formatDate(end)}`}</p>
-        <p className="down">{`${stops.length} ${
-          stops.length > 1 ? "days" : "day"
-        }`}</p>
+        <p className="days">
+          <span>{`${stops.length}`} </span>
+          {`${stops.length > 1 ? "days" : "day"}`}
+        </p>
       </div>
       <div className="tour-col">
         <p className="up">{projectName}</p>

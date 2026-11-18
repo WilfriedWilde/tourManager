@@ -129,7 +129,7 @@
 
 .days span {
   font-family: var(--font-main);
-  font-size: var(--space-6);
+  font-size: var(--space-4);
   font-weight: 600;
   color: var(--stop-free);
 }

@@ -215,7 +215,7 @@
 }
 
 .add-icon-container:hover svg {
-  fill: var(--primary);
+  fill: var(--text);
 }
 
 #overlay {

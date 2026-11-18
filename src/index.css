@@ -111,6 +111,6 @@ html {
 }
 
 .icon-text {
-  fill: var(--text);
+  fill: var(--text-muted);
   transition: 0.4s ease;
 }
