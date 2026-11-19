@@ -2,14 +2,15 @@ import { useState } from "react";
 import { formatDate } from "../../utils/format";
 import IconEdit from "../../assets/icons/edit.svg?react";
 import IconDelete from "../../assets/icons/delete.svg?react";
-import "./tour.css";
 import EditTourForm from "./EditTourForm";
+import DeleteTourForm from "./DeleteTourForm";
+import "./tour.css";
 
 export default function Tour({
   data,
-  showEditForm,
-  onEdit,
-  onCloseEdit,
+  showForm,
+  onOpenForm,
+  onCloseForm,
   onDelete,
   onUpdate,
 }) {
@@ -55,20 +56,30 @@ export default function Tour({
       </div>
       <div className="update-tour-btns-container">
         <div className="update-icon-container">
-          <IconEdit onClick={onEdit} />
+          <IconEdit onClick={() => onOpenForm("edit")} />
         </div>
         <div className="update-icon-container">
-          <IconDelete onClick={() => onDelete(id)} />
+          <IconDelete onClick={() => onOpenForm("delete")} />
         </div>
       </div>
       <EditTourForm
+        key={`${id}-${start}-${end}-${tourName}-${projectName}`}
         tour={{ id, projectName, tourName, start, end }}
-        show={showEditForm}
+        show={showForm("edit", id)}
         onDone={(updated) => {
           onUpdate(updated);
-          onCloseEdit();
+          onCloseForm();
         }}
-        onCancel={onCloseEdit}
+        onCancel={onCloseForm}
+      />
+      <DeleteTourForm
+        tourID={id}
+        show={showForm("delete", id)}
+        onDone={(deletedID) => {
+          onDelete(deletedID);
+          onCloseForm();
+        }}
+        onCancel={onCloseForm}
       />
     </div>
   );

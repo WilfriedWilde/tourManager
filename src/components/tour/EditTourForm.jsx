@@ -5,7 +5,6 @@ import InputTourForm from "./InputTourForm";
 import IconConfirm from "../../assets/icons/confirm.svg?react";
 import IconCancel from "../../assets/icons/cancel.svg?react";
 import { getNumDays } from "../../utils/days";
-import "./tour.css";
 
 const MIN_NAME = 2;
 const MAX_NAME = 50;
@@ -136,10 +135,8 @@ export default function EditTourForm({ tour, show, onDone, onCancel }) {
           >
             <IconCancel />
           </button>
-          <p className={`form-error ${error ? "show" : ""}`}>
-            {error?.message}
-          </p>
         </div>
+        <p className={`form-error ${error ? "show" : ""}`}>{error?.message}</p>
       </form>
     </>
   );

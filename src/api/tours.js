@@ -46,3 +46,17 @@ export async function updateTour(id, data) {
 
   return response.json();
 }
+
+export async function deleteTour(id) {
+  const response = await fetch(`/api/tours/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    const errBody = await response.json().catch(() => null);
+    const err = new Error(errBody?.message || `HTTP ${response.status}`);
+    err.code = errBody?.code;
+
+    throw err;
+  }
+}

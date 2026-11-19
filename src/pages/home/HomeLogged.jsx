@@ -9,10 +9,7 @@ import IconAdd from "../../assets/icons/add.svg?react";
 export default function HomeLogged() {
   const { tours, loading, error, addTour, deleteTour, updateTour } = useTours();
   const [hovered, setHovered] = useState(false);
-  const [showTourForm, setShowTourForm] = useState(false);
-  const [editingId, setEditingId] = useState(null);
-
-  const showOverlay = showTourForm || editingId !== null;
+  const [form, setForm] = useState(null);
 
   return (
     <>
@@ -37,10 +34,10 @@ export default function HomeLogged() {
               <Tour
                 key={`tour-${t.id}`}
                 data={t}
-                showEditForm={editingId === t.id}
-                onEdit={() => setEditingId(t.id)}
-                onCloseEdit={() => {
-                  setEditingId(null);
+                showForm={(type, id) => form?.type === type && form?.id === id}
+                onOpenForm={(type) => setForm({ type: type, id: t.id })}
+                onCloseForm={() => {
+                  setForm(null);
                 }}
                 onDelete={deleteTour}
                 onUpdate={updateTour}
@@ -52,7 +49,7 @@ export default function HomeLogged() {
               <IconAdd
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
-                onClick={() => setShowTourForm(true)}
+                onClick={() => setForm({ type: "add" })}
               />
             </div>
             <TourBorder
@@ -62,19 +59,18 @@ export default function HomeLogged() {
         </div>
       </main>
       <TourForm
-        show={showTourForm}
+        show={form?.type === "add"}
         onDone={(tour) => {
           if (tour) addTour(tour);
-          setShowTourForm(false);
+          setForm(null);
         }}
-        onCancel={() => setShowTourForm(false)}
+        onCancel={() => setForm(null)}
       />
       <div
         id="overlay"
-        className={showOverlay ? "show-overlay" : ""}
+        className={form ? "show-overlay" : ""}
         onClick={() => {
-          setShowTourForm(false);
-          setEditingId(null);
+          setForm(null);
         }}
       ></div>
     </>

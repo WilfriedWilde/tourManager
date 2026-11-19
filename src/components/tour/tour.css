@@ -64,6 +64,13 @@
   text-transform: uppercase;
 }
 
+.tour-form .delete-title {
+  font-family: var(--font-main);
+  font-size: var(--space-4);
+  font-weight: 400;
+  color: var(--text);
+}
+
 .tour-form-row {
   width: 100%;
   display: flex;

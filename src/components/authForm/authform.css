@@ -87,7 +87,7 @@
 .form-error.show {
   opacity: 1;
   visibility: visible;
-  transform: translateY(-20%);
+  transform: translateY(-100%);
 }
 
 @media (prefers-color-scheme: light) {
