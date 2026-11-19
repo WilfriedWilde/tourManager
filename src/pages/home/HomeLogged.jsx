@@ -7,9 +7,12 @@ import TourBorder from "../../assets/icons/tour-border.svg?react";
 import IconAdd from "../../assets/icons/add.svg?react";
 
 export default function HomeLogged() {
-  const { tours, loading, error, addTour } = useTours();
+  const { tours, loading, error, addTour, deleteTour, updateTour } = useTours();
   const [hovered, setHovered] = useState(false);
   const [showTourForm, setShowTourForm] = useState(false);
+  const [editingId, setEditingId] = useState(null);
+
+  const showOverlay = showTourForm || editingId !== null;
 
   return (
     <>
@@ -30,7 +33,19 @@ export default function HomeLogged() {
               <p>{error.message}</p>
             </div>
           ) : (
-            tours.map((t) => <Tour key={`tour-${t.id}`} data={t} />)
+            tours.map((t) => (
+              <Tour
+                key={`tour-${t.id}`}
+                data={t}
+                showEditForm={editingId === t.id}
+                onEdit={() => setEditingId(t.id)}
+                onCloseEdit={() => {
+                  setEditingId(null);
+                }}
+                onDelete={deleteTour}
+                onUpdate={updateTour}
+              />
+            ))
           )}
           <div className={`add-tour ${hovered ? "add-tour-hovered" : ""}`}>
             <div className="add-icon-container">
@@ -54,7 +69,14 @@ export default function HomeLogged() {
         }}
         onCancel={() => setShowTourForm(false)}
       />
-      <div id="overlay" className={showTourForm ? "show-overlay" : ""}></div>
+      <div
+        id="overlay"
+        className={showOverlay ? "show-overlay" : ""}
+        onClick={() => {
+          setShowTourForm(false);
+          setEditingId(null);
+        }}
+      ></div>
     </>
   );
 }

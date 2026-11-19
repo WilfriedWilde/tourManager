@@ -4,6 +4,7 @@ import { createTour } from "../../api/tours";
 import InputTourForm from "./InputTourForm";
 import IconConfirm from "../../assets/icons/confirm.svg?react";
 import IconCancel from "../../assets/icons/cancel.svg?react";
+import { getNumDays } from "../../utils/days";
 import "./tour.css";
 
 const MIN_NAME = 2;
@@ -148,13 +149,4 @@ export default function TourForm({ show, onDone, onCancel }) {
       </form>
     </>
   );
-}
-
-function getNumDays(start, end) {
-  if (!start || !end) return null;
-
-  const startDate = new Date(start).getTime();
-  const endDate = new Date(end).getTime();
-
-  return Math.round((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
 }

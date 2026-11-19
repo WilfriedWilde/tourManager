@@ -28,3 +28,21 @@ export async function createTour(data) {
 
   return response.json();
 }
+
+export async function updateTour(id, data) {
+  const response = await fetch(`/api/tours/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const errBody = await response.json().catch(() => null);
+    const err = new Error(errBody?.message || `HTTP ${response.status}`);
+    err.code = errBody?.code;
+
+    throw err;
+  }
+
+  return response.json();
+}

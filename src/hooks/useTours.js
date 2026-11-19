@@ -17,5 +17,13 @@ export default function useTours() {
     setTours((prev) => [...prev, tour]);
   }
 
-  return { tours, loading, error, addTour };
+  function deleteTour(deletediID) {
+    setTours((prev) => prev.filter((t) => t.id !== deletediID));
+  }
+
+  function updateTour(updated) {
+    setTours((prev) => prev.map((t) => (t.id === updated.id ? updated : t)));
+  }
+
+  return { tours, loading, error, addTour, deleteTour, updateTour };
 }
