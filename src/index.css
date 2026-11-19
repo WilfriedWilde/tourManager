@@ -51,7 +51,7 @@ html {
   --text: light-dark(#1c2a2e, #ffffff);
   --text-muted: light-dark(#5b6e72, #a9b8bb);
   --primary: light-dark(#2f7a68, #5fa895);
-  --primary-hover: light-dark(#256553, #8cc4b4);
+  --primary-hover: light-dark(#256553, #487d6e);
   --primary-press: light-dark(#1d5445, #3f8573);
   --tint: light-dark(#dceee8, #2a4a45);
   --error: light-dark(#b8493f, #d4756b);
@@ -113,4 +113,20 @@ html {
 .icon-text {
   fill: var(--text-muted);
   transition: 0.4s ease;
+}
+
+.icon-edit,
+.icon-delete {
+  fill: var(--text);
+  transition: 0.3s ease;
+}
+
+.icon-edit:hover {
+  cursor: pointer;
+  fill: var(--stop-free);
+}
+
+.icon-delete:hover {
+  cursor: pointer;
+  fill: var(--error);
 }

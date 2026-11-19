@@ -1,4 +1,6 @@
 import { formatDate } from "../../utils/format";
+import IconEdit from "../../assets/icons/edit.svg?react";
+import IconDelete from "../../assets/icons/delete.svg?react";
 import "./tour.css";
 
 export default function Tour({ data }) {
@@ -40,6 +42,20 @@ export default function Tour({ data }) {
         <p className="down">{`${confirmed.length}/${gigs.length} ${
           gigs.length > 1 ? "gigs" : "gig"
         } confirmed`}</p>
+      </div>
+      <div className="update-tour-btns-container">
+        <div
+          className="update-icon-container"
+          onClick={() => console.log("edit")}
+        >
+          <IconEdit />
+        </div>
+        <div
+          className="update-icon-container"
+          onClick={() => console.log("delete")}
+        >
+          <IconDelete />
+        </div>
       </div>
     </div>
   );

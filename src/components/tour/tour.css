@@ -1,4 +1,5 @@
 .tour {
+  position: relative;
   width: 100%;
   min-height: var(--space-24);
   display: flex;
@@ -44,7 +45,9 @@
   background-color: var(--bg);
   opacity: 0;
   visibility: visible;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 }
 
 .show-tour-form {
@@ -275,4 +278,30 @@
     var(--stop-travel),
     transparent 60%
   );
+}
+
+.update-tour-btns-container {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+.tour:hover .update-tour-btns-container {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+.update-icon-container {
+  width: var(--space-4);
+  height: var(--space-4);
 }
